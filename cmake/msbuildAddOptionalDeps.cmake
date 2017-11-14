@@ -14,7 +14,7 @@
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-# mteobild_add_optional_deps
+# msbuild_add_optional_deps
 # -----------------------------
 #
 # Convenience macro for adding dependencies optionally if not using system libraries. This function 
@@ -25,7 +25,7 @@
 #    DEP_VAR:STRING=<>      - Output variable containing the resolved dependencies
 #    ARGN                   - Dependencies to append
 #
-macro(mteobild_add_optional_deps DEP_VAR)
+macro(msbuild_add_optional_deps DEP_VAR)
   foreach(dep ${ARGN})
     string(TOUPPER "${dep}" dependency)
     if(NOT USE_SYSTEM_${dependency})

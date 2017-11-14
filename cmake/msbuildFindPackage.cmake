@@ -18,7 +18,7 @@ include(CMakeParseArguments)
 include(MteoBildAddOptionalDeps)
 include(MteoBildMakePackageInfo)
 
-# mteobild_find_package
+# msbuild_find_package
 # ------------------------
 #
 # Try to find the package <PACKAGE>. If the package cannot be found via find_package, the 
@@ -33,7 +33,7 @@ include(MteoBildMakePackageInfo)
 #                               find_package).
 #    PACKAGE_ARGS:LIST=<>     - Arguments passed to find_package.
 #    FORWARD_VARS:LIST=<>     - List of variables which are appended (if defined) to the 
-#                               MTEOBILD_THIRDPARTY_CMAKE_ARGS. This are usually the variables 
+#                               MSBUILD_THIRDPARTY_CMAKE_ARGS. This are usually the variables 
 #                               which have an effect on the find_package call. For example, we may 
 #                               want to forward BOOST_ROOT if it was supplied by the user. 
 #    REQUIRED_VARS:LIST=<>    - Variables which need to be TRUE to consider the package as 
@@ -44,7 +44,7 @@ include(MteoBildMakePackageInfo)
 #    BUILD_VERSION:STRING=<>  - Version of the package which is built (if required)
 #    DEPENDS:LIST=<>          - Dependencies of this package.
 #
-macro(mteobild_find_package)
+macro(msbuild_find_package)
   set(options)
   set(one_value_args PACKAGE BUILD_VERSION VERSION_VAR)
   set(multi_value_args PACKAGE_ARGS FORWARD_VARS REQUIRED_VARS DEPENDS)
@@ -103,8 +103,8 @@ macro(mteobild_find_package)
       # Forward arguments
       foreach(var ${ARG_FORWARD_VARS})
         if(DEFINED ${var})
-          set(MTEOBILD_THIRDPARTY_CMAKE_ARGS 
-              "${MTEOBILD_THIRDPARTY_CMAKE_ARGS};-D${var}:PATH=${${var}}")
+          set(MSBUILD_THIRDPARTY_CMAKE_ARGS 
+              "${MSBUILD_THIRDPARTY_CMAKE_ARGS};-D${var}:PATH=${${var}}")
         endif()
       endforeach()
 
@@ -144,11 +144,11 @@ macro(mteobild_find_package)
   # Set the dependencies if we build
   if(NOT(use_system) AND ARG_DEPENDS)
     set(deps)
-    mteobild_add_optional_deps(deps ${ARG_DEPENDS})
+    msbuild_add_optional_deps(deps ${ARG_DEPENDS})
     if(deps)
       add_dependencies(${target} ${deps})
     endif()
   endif()
 
-  mteobild_make_package_info(${ARG_PACKAGE} ${version} ${use_system})
+  msbuild_make_package_info(${ARG_PACKAGE} ${version} ${use_system})
 endmacro()
