@@ -15,8 +15,8 @@
 ##===------------------------------------------------------------------------------------------===##
 
 include(CMakeParseArguments)
-include(MteoBildAddOptionalDeps)
-include(MteoBildMakePackageInfo)
+include(msbuildAddOptionalDeps)
+include(msbuildMakePackageInfo)
 
 # msbuild_find_package
 # ------------------------

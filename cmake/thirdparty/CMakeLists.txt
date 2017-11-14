@@ -14,11 +14,11 @@
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-include(GTClangAllSetDownloadDir)
-include(GTClangAllFindPackage)
+include(msbuildSetDownloadDir)
+include(msbuildFindPackage)
 
 # Set the default download directory (define GTCLANG_ALL_DOWNLOAD_DIR)
-gtclang_all_set_download_dir()
+msbuild_set_download_dir()
 
 set(GTCLANG_ALL_INSTALL_PREFIX "${PROJECT_BINARY_DIR}/prefix")
 set(GTCLANG_ALL_PACKAGE_INFO)
