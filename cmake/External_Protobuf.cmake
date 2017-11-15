@@ -15,6 +15,9 @@
 ##===------------------------------------------------------------------------------------------===##
 
 include(ExternalProject)
+include(msbuildSetDownloadDir)
+
+msbuild_set_download_dir()
 
 set(cmake_args
   ${GTCLANG_ALL_PACKAGE_CMAKE_ARGS}
@@ -27,7 +30,7 @@ set(cmake_args
 )
 
 set(source_dir "${CMAKE_CURRENT_BINARY_DIR}/protobuf")
-set(install_dir "${GTCLANG_ALL_INSTALL_PREFIX}/protobuf")
+set(install_dir "${PROJECT_BINARY_DIR}/prefix/protobuf")
 
 # Python protobuf
 find_package(PythonInterp 3.5 REQUIRED)
@@ -44,10 +47,20 @@ set(install_script_in "${CMAKE_CURRENT_LIST_DIR}/templates/protobuf_python_insta
 set(install_script "${CMAKE_CURRENT_BINARY_DIR}/protobuf_python_install_script.sh")
 configure_file(${install_script_in} ${install_script} @ONLY)
 
+message("DOING   DOWNLOAD_DIR ${MSBUILD_DOWNLOAD_DIR}
+  URL ${protobuf_url}
+  URL_MD5 ${protobuf_md5}
+  SOURCE_DIR ${source_dir}
+  INSTALL_DIR ${install_dir}
+  CONFIGURE_COMMAND ${CMAKE_COMMAND} -G ${CMAKE_GENERATOR} <SOURCE_DIR>/cmake ${cmake_args}
+  STEP_TARGETS python-build 
+")
+
+message("${CMAKE_CURRENT_BINARY_DIR} ${PROJECT_BINARY_DIR}")
 
 # C++ protobuf
 ExternalProject_Add(protobuf
-  DOWNLOAD_DIR ${GTCLANG_ALL_DOWNLOAD_DIR}
+  DOWNLOAD_DIR ${MSBUILD_DOWNLOAD_DIR}
   URL ${protobuf_url}
   URL_MD5 ${protobuf_md5}
   SOURCE_DIR "${source_dir}"
