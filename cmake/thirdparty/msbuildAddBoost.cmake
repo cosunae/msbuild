@@ -38,9 +38,9 @@ msbuild_find_package(
   BUILD_VERSION ${boost_download_version}
 )
 
--# Prepare and export CMake variables of the external projects
--#set(thirdparty_cmake_args ${GTCLANG_ALL_PACKAGE_CMAKE_ARGS} ${GTCLANG_ALL_THIRDPARTY_CMAKE_ARGS})
--#set(GTCLANG_ALL_CMAKE_ARGS "${thirdparty_cmake_args}" CACHE INTERNAL "CMake arguments")
--
--#dawn_report_result("Package summary" ${GTCLANG_ALL_PACKAGE_INFO})
+# Prepare and export CMake variables of the external projects
+#set(thirdparty_cmake_args ${GTCLANG_ALL_PACKAGE_CMAKE_ARGS} ${GTCLANG_ALL_THIRDPARTY_CMAKE_ARGS})
+#set(GTCLANG_ALL_CMAKE_ARGS "${thirdparty_cmake_args}" CACHE INTERNAL "CMake arguments")
+
+#dawn_report_result("Package summary" ${GTCLANG_ALL_PACKAGE_INFO})
 
