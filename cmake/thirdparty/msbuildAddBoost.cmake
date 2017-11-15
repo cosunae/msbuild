@@ -20,16 +20,6 @@ include(msbuildFindPackage)
 # Set the default download directory (define GTCLANG_ALL_DOWNLOAD_DIR)
 msbuild_set_download_dir()
 
-#set(GTCLANG_ALL_INSTALL_PREFIX "${PROJECT_BINARY_DIR}/prefix")
-#set(GTCLANG_ALL_PACKAGE_INFO)
-#set(GTCLANG_ALL_PACKAGE_CMAKE_ARGS
-#  "-DBUILD_SHARED_LIBS:BOOL=${BUILD_SHARED_LIBS}"
-#  "-DCMAKE_BUILD_TYPE:STRING=${CMAKE_BUILD_TYPE}"
-#  "-DCMAKE_CXX_COMPILER:PATH=${CMAKE_CXX_COMPILER}"
-#  "-DCMAKE_C_COMPILER:PATH=${CMAKE_C_COMPILER}"
-#)
-#set(GTCLANG_ALL_THIRDPARTY_CMAKE_ARGS)
-
 #
 # Boost
 #
@@ -44,11 +34,13 @@ msbuild_find_package(
   PACKAGE Boost
   PACKAGE_ARGS ${boost_min_version} COMPONENTS ${boost_components}
   FORWARD_VARS BOOST_ROOT Boost_LIBRARY_DIRS Boost_INCLUDE_DIRS
+  REQUIRED_VARS BOOST_ROOT Boost_LIBRARY_DIRS Boost_INCLUDE_DIRS
   BUILD_VERSION ${boost_download_version}
 )
 
-# Prepare and export CMake variables of the external projects
-#set(thirdparty_cmake_args ${GTCLANG_ALL_PACKAGE_CMAKE_ARGS} ${GTCLANG_ALL_THIRDPARTY_CMAKE_ARGS})
-#set(GTCLANG_ALL_CMAKE_ARGS "${thirdparty_cmake_args}" CACHE INTERNAL "CMake arguments")
+-# Prepare and export CMake variables of the external projects
+-#set(thirdparty_cmake_args ${GTCLANG_ALL_PACKAGE_CMAKE_ARGS} ${GTCLANG_ALL_THIRDPARTY_CMAKE_ARGS})
+-#set(GTCLANG_ALL_CMAKE_ARGS "${thirdparty_cmake_args}" CACHE INTERNAL "CMake arguments")
+-
+-#dawn_report_result("Package summary" ${GTCLANG_ALL_PACKAGE_INFO})
 
-#dawn_report_result("Package summary" ${GTCLANG_ALL_PACKAGE_INFO})

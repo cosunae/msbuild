@@ -16,6 +16,7 @@
 
 include(ExternalProject)
 include(msbuildSetDownloadDir)
+include(msbuildSetExternalProperties)
 
 msbuild_set_download_dir()
 
@@ -29,8 +30,9 @@ set(cmake_args
   -Dprotobuf_INSTALL_EXAMPLES=OFF
 )
 
-set(source_dir "${CMAKE_CURRENT_BINARY_DIR}/protobuf")
-set(install_dir "${PROJECT_BINARY_DIR}/prefix/protobuf")
+msbuild_set_external_properties(NAME "protobuf" 
+    INSTALL_DIR install_dir 
+    SOURCE_DIR source_dir)
 
 # Python protobuf
 find_package(PythonInterp 3.5 REQUIRED)

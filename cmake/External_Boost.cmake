@@ -15,6 +15,7 @@
 ##===------------------------------------------------------------------------------------------===##
 
 include(ExternalProject)
+include(msbuildSetExternalProperties)
 
 if("${CMAKE_CURRENT_BINARY_DIR}" MATCHES " ")
   message(FATAL_ERROR "cannot use boost-bootstrap with a space in the name of the build diretory")
@@ -29,12 +30,16 @@ else()
   list(APPEND boost_args "link=static")
 endif()
 
+msbuild_set_external_properties(NAME "boost" 
+    INSTALL_DIR install_dir 
+    SOURCE_DIR source_dir)
+
 ExternalProject_Add(boost
   DOWNLOAD_DIR ${GTCLANG_ALL_DOWNLOAD_DIR}
   URL ${boost_url}
   URL_MD5 ${boost_md5}
-  SOURCE_DIR "${CMAKE_CURRENT_BINARY_DIR}/boost"
-  INSTALL_DIR "${GTCLANG_ALL_INSTALL_PREFIX}/boost"
+  SOURCE_DIR "${source_dir}"
+  INSTALL_DIR "${install_dir}"
   CONFIGURE_COMMAND ./bootstrap.sh --prefix=<INSTALL_DIR>
   BUILD_COMMAND ./b2 --prefix=<INSTALL_DIR> address-model=64 ${boost_args}
   INSTALL_COMMAND ./b2 --prefix=<INSTALL_DIR> address-model=64 ${boost_args} install
