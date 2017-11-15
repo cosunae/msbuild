@@ -38,7 +38,7 @@ set(protobuf_version_short "3.4")
 set(protobuf_url "https://github.com/google/protobuf/archive/v${protobuf_version}.tar.gz")
 set(protobuf_md5 "1d077a7d4db3d75681f5c333f2de9b1a")
 
-gtclang_all_find_package(
+msbuild_find_package(
   PACKAGE Protobuf
   PACKAGE_ARGS ${protobuf_version_short} NO_MODULE QUIET
   FORWARD_VARS Protobuf_DIR
@@ -55,7 +55,7 @@ set(boost_url
     "http://sourceforge.net/projects/boost/files/boost/1.${_v}.0/boost_1_${_v}_0.tar.gz/download")
 set(boost_md5 "7b493c08bc9557bbde7e29091f28b605")
 
-gtclang_all_find_package(
+msbuild_find_package(
   PACKAGE Boost
   PACKAGE_ARGS ${boost_min_version} COMPONENTS ${boost_components}
   FORWARD_VARS BOOST_ROOT Boost_LIBRARY_DIRS Boost_INCLUDE_DIRS
@@ -84,7 +84,7 @@ set(llvm_clang_url_libcxxabi
     "http://releases.llvm.org/${llvm_clang_version}/libcxxabi-${llvm_clang_version}.src.tar.xz")
 set(llvm_clang_md5_libcxxabi "bbe6b4d72c7c5978550d370af529bcf7")
 
-gtclang_all_find_package(
+msbuild_find_package(
   PACKAGE Clang
   PACKAGE_ARGS ${llvm_clang_version_short} REQUIRED
   FORWARD_VARS CLANG_ROOT LLVM_ROOT

@@ -15,8 +15,8 @@
 ##===------------------------------------------------------------------------------------------===##
 
 include(ExternalProject)
-include(GTClangAddOptionalDeps)
-include(GTClangAllMakeCMakeScript)
+include(msbuildAddOptionalDeps)
+include(msbuildMakeCMakeScript)
 
 set(dawn_cmake_args ${GTCLANG_ALL_CMAKE_ARGS})
 foreach(option ${DAWN_OPTIONS})
@@ -26,7 +26,7 @@ endforeach()
 set(dawn_source "${GTCLANG_ALL_DAWN_SOURCE_DIR}")
 set(dawn_build "${CMAKE_CURRENT_BINARY_DIR}/dawn")
 
-gtclang_all_add_optional_deps(dawn_deps protobuf)
+msbuild_add_optional_deps(dawn_deps protobuf)
 
 ExternalProject_Add(dawn
    DOWNLOAD_DIR ${GTCLANG_ALL_DOWNLOAD_DIR}
@@ -43,6 +43,6 @@ ExternalProject_Add(dawn
 ExternalProject_Get_Property(dawn install_dir)
 set(DAWN_ROOT "${install_dir}" CACHE INTERNAL "")
 
-gtclang_all_make_cmake_script(${dawn_source} ${dawn_build} ${dawn_cmake_args})
+msbuild_make_cmake_script(${dawn_source} ${dawn_build} ${dawn_cmake_args})
 
 list(APPEND GTCLANG_ALL_CMAKE_ARGS "-DDAWN_ROOT:PATH=${DAWN_ROOT}")
