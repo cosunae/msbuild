@@ -16,33 +16,43 @@
 
 include(CMakeParseArguments)
 
-# msbuild_clone_repository
+# gtclang_clone_repository
 # ----------------------------
 #
 # This will make sure the repository NAME exists and, if not, will clone the branch BRANCH 
 # from the git repository given by URL.
 #
-# This will define the variable MSBUILD_<NAME>_SOURCE_DIR (where <NAME> is the passed NAME 
-# in all uppercase) which contains the path to the source of the repository NAME.
-#
-#    NAME:STRING=<>       - Name of the repository
-#    URL:STRING=<>        - Version of the package
-#    BRANCH:STRING=<>     - Do we use the system version of the package?
-#
-function(msbuild_clone_repository)
+#                NAME:STRING=<>           - Name of the repository
+#                URL:STRING=<>            - Version of the package
+#                BRANCH:STRING=<>         - Do we use the system version of the package?
+#    \param[out] SOURCE_DIR:STRING=<>     - Name of the variable that contains the source dir where
+
+function(gtclang_clone_repository)
   set(options)
-  set(one_value_args NAME URL BRANCH)
+  set(one_value_args NAME URL BRANCH SOURCE_DIR)
   set(multi_value_args)
   cmake_parse_arguments(ARG "${options}" "${one_value_args}" "${multi_value_args}" ${ARGN})
+
+  if(NOT("${ARG_UNPARSED_ARGUMENTS}" STREQUAL ""))
+    message(FATAL_ERROR "invalid argument ${ARG_UNPARSED_ARGUMENTS}")
+  endif()
+
+  if(NOT(DEFINED ARG_NAME)) 
+    message(FATAL_ERROR "name not specified")
+  endif()
+
+  if(NOT(DEFINED ARG_SOURCE_DIR))
+    message(FATAL_ERROR "SOURCE_DIR not specified")
+  endif()
+
 
   string(TOUPPER ${ARG_NAME} upper_name)
   set(source_dir "${CMAKE_SOURCE_DIR}/${ARG_NAME}")
 
   # Check if repository exists
   if(EXISTS "${source_dir}")
-    set("MSBUILD_${upper_name}_SOURCE_DIR" "${source_dir}" 
-         CACHE INTERNAL "source directory of ${ARG_NAME}" FORCE)
-    message(STATUS "Using ${ARG_NAME}: ${MSBUILD_${upper_name}_SOURCE_DIR}")
+    set("${ARG_SOURCE_DIR}" "${source_dir}" PARENT_SCOPE)
+    message(STATUS "Using ${ARG_NAME}: ${source_dir}}")
   else()
     find_program(git_executable "git")
     if(NOT(git_executable))
@@ -78,7 +88,6 @@ function(msbuild_clone_repository)
     run_git("clone" "${ARG_URL}" "--branch=${ARG_BRANCH}" ${source_dir})
     message(STATUS "Successfully cloned ${ARG_NAME}")
 
-    set("MSBUILD_${upper_name}_SOURCE_DIR" "${source_dir}" 
-         CACHE INTERNAL "source directory of ${ARG_NAME}" FORCE)
+    set("${ARG_SOURCE_DIR}" "${source_dir}" PARENT_SCOPE)
   endif()
 endfunction()
