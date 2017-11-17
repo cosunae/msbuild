@@ -14,7 +14,7 @@
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-# msbuild_add_optional_deps
+# gtclang_all_add_optional_deps
 # -----------------------------
 #
 # Convenience macro for adding dependencies optionally if not using system libraries. This function 
