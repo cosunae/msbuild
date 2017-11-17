@@ -16,42 +16,55 @@
 
 include(ExternalProject)
 include(msbuildSetExternalProperties)
+include(msbuildRequireArg)
 
-if("${CMAKE_CURRENT_BINARY_DIR}" MATCHES " ")
-  message(FATAL_ERROR "cannot use boost-bootstrap with a space in the name of the build diretory")
-endif()
+set(DIR_OF_BOOST_EXTERNAL ${CMAKE_CURRENT_LIST_DIR})
 
-# Build system library which disables all other libraries
-set(boost_args "--with-system")
+function(msbuild_external_package)
+  set(options)
+  set(one_value_args URL URL_MD5 DOWNLOAD_DIR)
+  set(multi_value_args REQUIRED_VARS CMAKE_ARGS)
+  cmake_parse_arguments(ARG "${options}" "${one_value_args}" "${multi_value_args}" ${ARGN})
 
-if(BUILD_SHARED_LIBS)
-  list(APPEND boost_args "link=shared")
-else()
-  list(APPEND boost_args "link=static")
-endif()
+  msbuild_require_arg("URL" ${ARG_URL})
+  msbuild_require_arg("DOWNLOAD_DIR" ${ARG_DOWNLOAD_DIR})
+  msbuild_require_arg("URL_MD5" ${ARG_URL_MD5})
 
-msbuild_set_external_properties(NAME "boost" 
-    INSTALL_DIR install_dir 
-    SOURCE_DIR source_dir)
+  if(NOT("${ARG_UNPARSED_ARGUMENTS}" STREQUAL ""))
+    message(FATAL_ERROR "invalid argument ${ARG_UNPARSED_ARGUMENTS}")
+  endif()
 
-ExternalProject_Add(boost
-  DOWNLOAD_DIR ${GTCLANG_ALL_DOWNLOAD_DIR}
-  URL ${boost_url}
-  URL_MD5 ${boost_md5}
-  SOURCE_DIR "${source_dir}"
-  INSTALL_DIR "${install_dir}"
-  CONFIGURE_COMMAND ./bootstrap.sh --prefix=<INSTALL_DIR>
-  BUILD_COMMAND ./b2 --prefix=<INSTALL_DIR> address-model=64 ${boost_args}
-  INSTALL_COMMAND ./b2 --prefix=<INSTALL_DIR> address-model=64 ${boost_args} install
-  BUILD_IN_SOURCE 1
-)
 
-ExternalProject_Get_Property(boost install_dir)
-set(BOOST_ROOT "${install_dir}" CACHE INTERNAL "")
+  if("${CMAKE_CURRENT_BINARY_DIR}" MATCHES " ")
+    message(FATAL_ERROR "cannot use boost-bootstrap with a space in the name of the build diretory")
+  endif()
 
-list(APPEND GTCLANG_ALL_THIRDPARTY_CMAKE_ARGS
-  "-DBOOST_ROOT:PATH=${BOOST_ROOT}"
-  "-DBoost_INCLUDE_DIR:PATH=${BOOST_ROOT}/include"
-  "-DBOOST_LIBRARYDIR:PATH=${BOOST_ROOT}/lib"
-  "-DBoost_NO_SYSTEM_PATHS:BOOL=ON"
-)
+  # Build system library which disables all other libraries
+  set(boost_args "--with-system")
+
+  if(BUILD_SHARED_LIBS)
+    list(APPEND boost_args "link=shared")
+  else()
+    list(APPEND boost_args "link=static")
+  endif()
+
+  msbuild_set_external_properties(NAME "boost" 
+      INSTALL_DIR install_dir 
+      SOURCE_DIR source_dir)
+
+  ExternalProject_Add(boost
+    DOWNLOAD_DIR ${ARG_DOWNLOAD_DIR}
+    URL ${ARG_URL}
+    URL_MD5 ${ARG_MD5}
+    SOURCE_DIR "${source_dir}"
+    INSTALL_DIR "${install_dir}"
+    CONFIGURE_COMMAND ./bootstrap.sh --prefix=<INSTALL_DIR>
+    BUILD_COMMAND ./b2 --prefix=<INSTALL_DIR> address-model=64 ${boost_args}
+    INSTALL_COMMAND ./b2 --prefix=<INSTALL_DIR> address-model=64 ${boost_args} install
+    BUILD_IN_SOURCE 1
+  )
+
+  ExternalProject_Get_Property(boost install_dir)
+  set(BOOST_ROOT "${install_dir}" CACHE INTERNAL "")
+
+endfunction()
