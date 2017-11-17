@@ -53,10 +53,10 @@ function(msbuild_set_external_properties)
   endif()
 
   if(DEFINED ARG_INSTALL_DIR) 
-    set(${ARG_SOURCE_DIR} "${CMAKE_CURRENT_BINARY_DIR}/${ARG_NAME}" PARENT_SCOPE)
+    set(${ARG_INSTALL_DIR} "${PROJECT_BINARY_DIR}/prefix/${ARG_NAME}" PARENT_SCOPE)
   endif()
   if(DEFINED ARG_SOURCE_DIR) 
-    set(${ARG_SOURCE_DIR} "${PROJECT_BINARY_DIR}/prefix/${ARG_NAME}" PARENT_SCOPE)
+    set(${ARG_SOURCE_DIR} "${CMAKE_CURRENT_BINARY_DIR}/${ARG_NAME}" PARENT_SCOPE)
   endif()
 
 endfunction()
