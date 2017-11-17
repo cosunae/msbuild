@@ -15,8 +15,10 @@
 ##===------------------------------------------------------------------------------------------===##
 
 include(CMakeParseArguments)
-include(msbuildAddOptionalDeps)
 include(msbuildMakePackageInfo)
+include(msbuildRequireArg)
+include(msbuildAddOptionalDeps)
+include(msbuildGetCacheVariables)
 
 # msbuild_find_package
 # ------------------------
@@ -32,23 +34,20 @@ include(msbuildMakePackageInfo)
 #    PACKAGE:STRING=<>        - Name of the package (has to be the same name as used in 
 #                               find_package).
 #    PACKAGE_ARGS:LIST=<>     - Arguments passed to find_package.
-#    FORWARD_VARS:LIST=<>     - List of variables which are appended (if defined) to the 
-#                               MSBUILD_THIRDPARTY_CMAKE_ARGS. This are usually the variables 
-#                               which have an effect on the find_package call. For example, we may 
-#                               want to forward BOOST_ROOT if it was supplied by the user. 
 #    REQUIRED_VARS:LIST=<>    - Variables which need to be TRUE to consider the package as 
 #                               found. By default we check that <PACKAGE>_FOUND is TRUE.
 #    VERSION_VAR:STRING=<>    - Name of the variable which is defined by the find_package command
 #                               to provide the version. By default we use <PACKAGE>_VERSION (or a 
 #                               variation thereof).
 #    BUILD_VERSION:STRING=<>  - Version of the package which is built (if required)
-#    DEPENDS:LIST=<>          - Dependencies of this package.
 #
 macro(msbuild_find_package)
   set(options)
   set(one_value_args PACKAGE BUILD_VERSION VERSION_VAR)
-  set(multi_value_args PACKAGE_ARGS FORWARD_VARS REQUIRED_VARS DEPENDS)
+  set(multi_value_args PACKAGE_ARGS REQUIRED_VARS DEPENDS ADDITIONAL )
   cmake_parse_arguments(ARG "${options}" "${one_value_args}" "${multi_value_args}" ${ARGN})
+
+  msbuild_require_arg("PACKAGE" ${ARG_PACKAGE})
 
   if(NOT("${ARG_UNPARSED_ARGUMENTS}" STREQUAL ""))
     message(FATAL_ERROR "invalid argument ${ARG_UNPARSED_ARGUMENTS}")
@@ -77,9 +76,13 @@ macro(msbuild_find_package)
   if(NOT(USE_SYSTEM_${package_upper}))
     set(USE_SYSTEM_${package_upper} OFF CACHE BOOL ${doc} FORCE)
     include(${external_file})
+
+    set(CMAKE_ARGS)
+    msbuild_get_cache_variables(CMAKE_ARGS)
+    msbuild_external_package("REQUIRED_VARS" ${ARG_REQUIRED_VARS} "CMAKE_ARGS" ${CMAKE_ARGS} ${ARG_ADDITIONAL})
   else()
     # Check if the system has the package
-    find_package(${ARG_PACKAGE} ${ARG_PACKAGE_ARGS})
+    find_package(${ARG_PACKAGE} ${ARG_PACKAGE_ARGS} QUIET)
 
     # Check if all the required variables are set
     set(required_vars_ok TRUE)
@@ -88,6 +91,8 @@ macro(msbuild_find_package)
       if(NOT(${arg}))
         set(required_vars_ok FALSE)
         set(missing_required_vars "${missing_required_vars} ${arg}")
+      else()
+        set(arg ${arg} PARENT_SCOPE)
       endif()
     endforeach()
 
@@ -99,14 +104,6 @@ macro(msbuild_find_package)
                              ${package_upper}_FOUND OR
                              ${ARG_PACKAGE}_DIR)) 
       set(use_system TRUE)
-
-      # Forward arguments
-      foreach(var ${ARG_FORWARD_VARS})
-        if(DEFINED ${var})
-          set(MSBUILD_THIRDPARTY_CMAKE_ARGS 
-              "${MSBUILD_THIRDPARTY_CMAKE_ARGS};-D${var}:PATH=${${var}}")
-        endif()
-      endforeach()
 
       # Try to detect the version we just found
       if(DEFINED ARG_VERSION_VAR)
@@ -137,7 +134,10 @@ macro(msbuild_find_package)
 
     else()
       set(USE_SYSTEM_${package_upper} OFF CACHE BOOL ${doc} FORCE)
+      set(CMAKE_ARGS)
+      msbuild_get_cache_variables(CMAKE_ARGS)
       include(${external_file})
+      msbuild_external_package("REQUIRED_VARS" ${ARG_REQUIRED_VARS} "CMAKE_ARGS" ${CMAKE_ARGS} ${ARG_ADDITIONAL})
     endif()
   endif()
 
@@ -150,5 +150,5 @@ macro(msbuild_find_package)
     endif()
   endif()
 
-  msbuild_make_package_info(${ARG_PACKAGE} ${version} ${use_system})
+#  msbuild_make_package_info(${ARG_PACKAGE} ${version} ${use_system})
 endmacro()
