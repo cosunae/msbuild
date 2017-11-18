@@ -6,18 +6,18 @@ This section describes the CMake functionailty of Dawn and it's subprojects.
 Installation
 ************
 
-Add the ``<dawn>/cmake/modules`` directory to the ``CMAKE_MODULE_PATH`` to use the functions, macros and modules:
+Add the ``<msbuild>/cmake/modules`` directory to the ``CMAKE_MODULE_PATH`` to use the functions, macros and modules:
 
 .. code-block:: cmake
 
-  list(APPEND CMAKE_MODULE_PATH "<dawn>/cmake/modules")
+  list(APPEND CMAKE_MODULE_PATH "<msbuild>/cmake/modules")
 
-Note that all Dawn projects contain a ``dawn_cmake_init`` macro which tries to find the CMake modules of Dawn.
+Note that all `msbuild` projects contain a ``msbuild_cmake_init`` macro which tries to find the CMake modules of Msbuild.
 
 .. code-block:: cmake
 
-  include(DawnCMakeInit)
-  dawn_cmake_init()
+  include(MsbuildCMakeInit)
+  msbuild_cmake_init()
 
 Functions & Macros
 ******************
