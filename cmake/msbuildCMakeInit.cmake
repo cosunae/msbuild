@@ -14,7 +14,7 @@
 
 #.rst:
 # msbuild_cmake_init
-# ---------------
+# --------------------
 #
 # Add the necessary paths to ``CMAKE_MODULE_PATH`` to use the functions, macros and modules of the 
 # ``msbuild`` project. To find the ``msbuild`` modules the following directories are searched:
