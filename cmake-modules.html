@@ -36,7 +36,7 @@
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="Dawn  documentation" href="index.html"/>
-        <link rel="next" title="dawn_get_compiler_info" href="cmake-modules/DawGetCompilerStr.html"/>
+        <link rel="next" title="dawn_add_executable" href="cmake-modules/DawnAddExecutable.html"/>
         <link rel="prev" title="Dawn — Compiler toolchain for high-level DSLs" href="index.html"/> 
 
   
@@ -91,7 +91,6 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">CMake Modules</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#functions-macros">Functions &amp; Macros</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cmake-modules/DawGetCompilerStr.html">dawn_get_compiler_info</a></li>
 <li class="toctree-l3"><a class="reference internal" href="cmake-modules/DawnAddExecutable.html">dawn_add_executable</a></li>
 <li class="toctree-l3"><a class="reference internal" href="cmake-modules/DawnAddLibrary.html">dawn_add_library</a></li>
 <li class="toctree-l3"><a class="reference internal" href="cmake-modules/DawnAddTargetClangFormat.html">dawn_add_target_clang_format</a></li>
@@ -108,15 +107,15 @@
 <li class="toctree-l3"><a class="reference internal" href="cmake-modules/DawnExportPackage.html">dawn_export_package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="cmake-modules/DawnFindPythonModule.html">dawn_find_python_module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="cmake-modules/DawnGetArchitectureInfo.html">dawn_get_architecture_info</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cmake-modules/DawnGetCompilerInfo.html">dawn_get_compiler_info</a></li>
 <li class="toctree-l3"><a class="reference internal" href="cmake-modules/DawnGetGitHeadRevision.html">dawn_get_git_head_revision</a></li>
 <li class="toctree-l3"><a class="reference internal" href="cmake-modules/DawnGetPlatformInfo.html">dawn_get_platform_info</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cmake-modules/DawnGetScriptDir.html">dawn_get_script_dir</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cmake-modules/DawnIncludeGuard.html">dawn_include_guard</a></li>
 <li class="toctree-l3"><a class="reference internal" href="cmake-modules/DawnMakeStringPair.html">dawn_make_string_pair</a></li>
 <li class="toctree-l3"><a class="reference internal" href="cmake-modules/DawnReportResult.html">dawn_report_result</a></li>
 <li class="toctree-l3"><a class="reference internal" href="cmake-modules/DawnSetCXXStandard.html">dawn_set_cxx_standard</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cmake-modules/msbuildAddCustomDummyTarget.html">msbuild_add_custom_dummy_target</a></li>
 <li class="toctree-l3"><a class="reference internal" href="cmake-modules/msbuildCMakeInit.html">msbuild_cmake_init</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cmake-modules/msbuildGetCompilerInfo.html">msbuid_get_compiler_info</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cmake-modules/msbuildIncludeGuard.html">msbuild_include_guard</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#modules">Modules</a><ul>
@@ -219,7 +218,6 @@
 </div>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="cmake-modules/DawGetCompilerStr.html">dawn_get_compiler_info</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cmake-modules/DawnAddExecutable.html">dawn_add_executable</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cmake-modules/DawnAddLibrary.html">dawn_add_library</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cmake-modules/DawnAddTargetClangFormat.html">dawn_add_target_clang_format</a></li>
@@ -236,15 +234,15 @@
 <li class="toctree-l1"><a class="reference internal" href="cmake-modules/DawnExportPackage.html">dawn_export_package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cmake-modules/DawnFindPythonModule.html">dawn_find_python_module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cmake-modules/DawnGetArchitectureInfo.html">dawn_get_architecture_info</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cmake-modules/DawnGetCompilerInfo.html">dawn_get_compiler_info</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cmake-modules/DawnGetGitHeadRevision.html">dawn_get_git_head_revision</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cmake-modules/DawnGetPlatformInfo.html">dawn_get_platform_info</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cmake-modules/DawnGetScriptDir.html">dawn_get_script_dir</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cmake-modules/DawnIncludeGuard.html">dawn_include_guard</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cmake-modules/DawnMakeStringPair.html">dawn_make_string_pair</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cmake-modules/DawnReportResult.html">dawn_report_result</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cmake-modules/DawnSetCXXStandard.html">dawn_set_cxx_standard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cmake-modules/msbuildAddCustomDummyTarget.html">msbuild_add_custom_dummy_target</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cmake-modules/msbuildCMakeInit.html">msbuild_cmake_init</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cmake-modules/msbuildGetCompilerInfo.html">msbuid_get_compiler_info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cmake-modules/msbuildIncludeGuard.html">msbuild_include_guard</a></li>
 </ul>
 </div>
 </div>
@@ -274,7 +272,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="cmake-modules/DawGetCompilerStr.html" class="btn btn-neutral float-right" title="dawn_get_compiler_info" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="cmake-modules/DawnAddExecutable.html" class="btn btn-neutral float-right" title="dawn_add_executable" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral" title="Dawn — Compiler toolchain for high-level DSLs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
