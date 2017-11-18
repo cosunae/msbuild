@@ -12,22 +12,23 @@
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-include(DawnIncludeGuard)
-dawn_include_guard()
+include(msbuildIncludeGuard)
+msbuild_include_guard()
 
 include(CMakeParseArguments)
 
-## gtclang_add_integrationtest
-## ---------------------------
-##
-## Creates a dummy target with list of C++ files contained in the list of provided directories, with 
-##   the purpose that qt creator can load those files into the project, which does not happen for those
-##   files that are not included in at least one target.
-##    
-##    NAME:STRING=<>             - Name of the dummy custom target
-##    DIRECTORIES:STRING=<>      - List of directories that contain the source files
-##
-function(dawn_add_custom_dummy_target)
+#.rst:
+#gtclang_add_integrationtest
+# ---------------------------
+#
+# Creates a dummy target with list of C++ files contained in the list of provided directories, with 
+#   the purpose that qt creator can load those files into the project, which does not happen for those
+#   files that are not included in at least one target.
+#    
+#    NAME:STRING=<>             - Name of the dummy custom target
+#    DIRECTORIES:STRING=<>      - List of directories that contain the source files
+#
+function(msbuild_add_custom_dummy_target)
   # Parse arguments
   set(options)
   set(one_value_args NAME)
