@@ -19,7 +19,7 @@ include(CMakeParseArguments)
 
 #.rst:
 # msbuild_add_custom_dummy_target
-# ---------------------------
+# --------------------------------
 #
 # Creates a dummy target with list of C++ files contained in the list of provided directories.
 # The function is used to create dummy targets with files that are not included in any other target

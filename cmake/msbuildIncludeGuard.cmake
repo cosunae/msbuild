@@ -12,26 +12,20 @@
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-include(DawnIncludeGuard)
-dawn_include_guard()
-
-get_filename_component(__dawn_cmake_script_dir__ ${CMAKE_CURRENT_LIST_FILE} PATH)
-
 #.rst:
-# dawn_get_script_dir
-# -------------------
+# msbuild_include_guard
+# ----------------------
 #
-# Get the directory of the scripts located ``<dawn-root>/cmake/scripts``.
+# Prevent frequently-included CMake files from being re-parsed multiple times.
 #
 # .. code-block:: cmake
 #
-#   dawn_get_script_dir(SCRIPT_DIR_VAR)
+#   msbuild_include_guard()
 #
-# ``SCRIPT_DIR_VAR``
-#   Variable which will contain the script directory on output.
-#
-# .. note:: This function is for internal use only.
-#
-function(dawn_get_script_dir SCRIPT_DIR_VAR)
-  set(${SCRIPT_DIR_VAR} "${__dawn_cmake_script_dir__}/scripts" PARENT_SCOPE)
-endfunction()
+macro(msbuild_include_guard)
+  if(DEFINED "__MSBUILD_INCLUDE_GUARD_${CMAKE_CURRENT_LIST_FILE}")
+    return()
+  endif(DEFINED "__MSBUILD_INCLUDE_GUARD_${CMAKE_CURRENT_LIST_FILE}")
+
+  set("__MSBUILD_INCLUDE_GUARD_${CMAKE_CURRENT_LIST_FILE}" 1)
+endmacro()

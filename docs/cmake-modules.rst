@@ -32,8 +32,6 @@ Each function and macro uses a `snake-case <https://en.wikipedia.org/wiki/Snake_
 .. toctree::
   :maxdepth: 1
 
-  /cmake-modules/DawGetCompilerStr
-  /cmake-modules/DawnAddCustomDummyTarget
   /cmake-modules/DawnAddExecutable
   /cmake-modules/DawnAddLibrary
   /cmake-modules/DawnAddTargetClangFormat
@@ -50,11 +48,8 @@ Each function and macro uses a `snake-case <https://en.wikipedia.org/wiki/Snake_
   /cmake-modules/DawnExportPackage
   /cmake-modules/DawnFindPythonModule
   /cmake-modules/DawnGetArchitectureInfo
-  /cmake-modules/DawnGetCompilerInfo
   /cmake-modules/DawnGetGitHeadRevision
   /cmake-modules/DawnGetPlatformInfo
-  /cmake-modules/DawnGetScriptDir
-  /cmake-modules/DawnIncludeGuard
   /cmake-modules/DawnMakeStringPair
   /cmake-modules/DawnReportResult
   /cmake-modules/DawnSetCXXStandard
@@ -73,6 +68,8 @@ Each function and macro uses a `snake-case <https://en.wikipedia.org/wiki/Snake_
   /cmake-modules/msbuildCloneRepository
   /cmake-modules/msbuildFindPackage
   /cmake-modules/msbuildGetCacheVariables
+  /cmake-modules/msbuildGetCompilerInfo
+  /cmake-modules/msbuildIncludeGuard
   /cmake-modules/msbuildMakeCMakeScript
   /cmake-modules/msbuildMakePackageInfo
   /cmake-modules/msbuildRequireArg
