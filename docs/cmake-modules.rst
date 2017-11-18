@@ -65,6 +65,7 @@ Each function and macro uses a `snake-case <https://en.wikipedia.org/wiki/Snake_
   /cmake-modules/External_dawn
   /cmake-modules/External_gtclang
   /cmake-modules/GTClangAllOptions
+  /cmake-modules/msbuildAddCustomDummyTarget
   /cmake-modules/msbuildAddDependency
   /cmake-modules/msbuildAddOptionalDeps
   /cmake-modules/msbuildCMakeInit

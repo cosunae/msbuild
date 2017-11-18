@@ -13,19 +13,19 @@
 ##===------------------------------------------------------------------------------------------===##
 
 #.rst:
-# dawn_include_guard
+# msbuild_include_guard
 # ------------------
 #
 # Prevent frequently-included CMake files from being re-parsed multiple times.
 #
 # .. code-block:: cmake
 #
-#   dawn_include_guard()
+#   msbuild_include_guard()
 #
-macro(dawn_include_guard)
-  if(DEFINED "__DAWN_INCLUDE_GUARD_${CMAKE_CURRENT_LIST_FILE}")
+macro(msbuild_include_guard)
+  if(DEFINED "__MSBUILD_INCLUDE_GUARD_${CMAKE_CURRENT_LIST_FILE}")
     return()
-  endif(DEFINED "__DAWN_INCLUDE_GUARD_${CMAKE_CURRENT_LIST_FILE}")
+  endif(DEFINED "__MSBUILD_INCLUDE_GUARD_${CMAKE_CURRENT_LIST_FILE}")
 
-  set("__DAWN_INCLUDE_GUARD_${CMAKE_CURRENT_LIST_FILE}" 1)
+  set("__MSBUILD_INCLUDE_GUARD_${CMAKE_CURRENT_LIST_FILE}" 1)
 endmacro()
