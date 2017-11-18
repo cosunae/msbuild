@@ -32,3 +32,11 @@ add_custom_target(docs
  DEPENDS MsbuildDocsSphinxHtml
 )
 
+add_custom_target(deploy-docs
+  COMMAND ${BASH_EXECUTABLE} ${PROJECT_SOURCE_DIR}/scripts/gh-pages/deploy.sh
+  WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+  COMMENT "Deploying documentation" VERBATIM
+)
+
+add_dependencies(deploy-docs docs)
+
