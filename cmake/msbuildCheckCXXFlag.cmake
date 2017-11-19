@@ -19,7 +19,7 @@ include(CheckCXXCompilerFlag)
 
 #.rst:
 # msbuild_check_cxx_flag
-# -------------------
+# -------------------------------
 #
 # Test if the C++ compiler flag is supported.
 #

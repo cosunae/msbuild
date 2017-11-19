@@ -17,7 +17,7 @@ msbuild_include_guard()
 
 #.rst:
 # msbuild_report_result
-# ------------------
+# ---------------------------------
 #
 # Report a list of strings, encompassed by a box.
 #

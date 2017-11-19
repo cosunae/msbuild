@@ -19,7 +19,7 @@ include(CMakeParseArguments)
 
 #.rst:
 # msbuild_add_executable
-# -------------------
+# --------------------------
 #
 # Compile the given objects into a runnable executable (.exe).
 #

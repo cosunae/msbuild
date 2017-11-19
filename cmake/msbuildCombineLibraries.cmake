@@ -20,7 +20,7 @@ include(msbuildRequireArg)
 
 #.rst:
 # msbuild_combine_libraries
-# ----------------------
+# -----------------------------------
 #
 # Combine multiple object libraries to a single static and, if ``BUILD_SHARED_LIBS`` is ON, shared 
 # library. The CMake target of the library is ``<NAME>Static`` and ``<NAME>Shared`` respectively.

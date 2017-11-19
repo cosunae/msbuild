@@ -17,7 +17,7 @@ msbuild_include_guard()
 
 #.rst:
 # msbuild_check_in_source_build
-# --------------------------
+# ------------------------------------
 #
 # Abort with a meaningful error message if ``CMAKE_BINARY_DIR`` matches ``CMAKE_SOURCE_DIR``.
 #

@@ -17,7 +17,7 @@ msbuild_include_guard()
 
 #.rst:
 # msbuild_make_string_pair
-# ---------------------
+# -------------------------------------
 #
 # Create a formatted string of the given string pair.
 #

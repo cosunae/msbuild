@@ -17,7 +17,7 @@ msbuild_include_guard()
 
 #.rst:
 # msbuild_find_python_module
-# -----------------------
+# --------------------------------------
 #
 # Try to find a specific python module.
 #

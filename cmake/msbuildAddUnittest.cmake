@@ -19,7 +19,7 @@ include(msbuildAddExecutable)
 
 #.rst:
 # msbuild_add_unittest
-# -----------------
+# ----------------------------
 #
 # Compile the given objects into a runnable unittest executable (.exe) and register it within CTest.
 # Note that to enable CTest you need to call the builtin command ``enable_testing()`` in the source 

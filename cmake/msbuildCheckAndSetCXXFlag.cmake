@@ -19,7 +19,7 @@ include(msbuildCheckCXXFlag)
 
 #.rst:
 # msbuild_check_and_set_cxx_flag
-# ---------------------------
+# --------------------------------------
 #
 # Test if the C++ compiler flag is supported and if so, add it to the ``CMAKE_CXX_FLAGS``.
 #

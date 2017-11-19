@@ -17,7 +17,7 @@ msbuild_include_guard()
 
 #.rst:
 # msbuild_get_platform_info
-# ----------------------
+# -------------------------------------
 #
 # Get the identification string of the platform.
 #

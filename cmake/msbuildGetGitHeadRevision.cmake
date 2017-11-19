@@ -19,7 +19,7 @@ include(msbuildGetScriptDir)
 
 #.rst:
 # msbuild_get_git_head_revision
-# --------------------------
+# ---------------------------------------
 #
 # These functions force a re-configure on each git commit so that you can trust the values of the 
 # variables in your build system. It returns the refspec and sha1 hash of the current head revision.

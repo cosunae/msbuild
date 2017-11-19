@@ -17,7 +17,7 @@ msbuild_include_guard()
 
 #.rst:
 # msbuild_configure_file
-# -------------------
+# ----------------------------------
 #
 # Configure a file and store the output in the same directory hirarchy as the input file while 
 # substituting ``CMAKE_SOURCE_DIR`` for ``CMAKE_BINARY_DIR``. If the input file has a ``.cmake`` 

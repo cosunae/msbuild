@@ -19,7 +19,7 @@ include(msbuildCheckAndSetCXXFlag)
 
 #.rst:
 # msbuild_set_cxx_standard
-# ---------------------
+# ------------------------------------
 #
 # Set the minimum standard of C++.
 #

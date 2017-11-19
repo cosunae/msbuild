@@ -61,20 +61,36 @@ Each function and macro uses a `snake-case <https://en.wikipedia.org/wiki/Snake_
   /cmake-modules/GTClangAllOptions
   /cmake-modules/msbuildAddCustomDummyTarget
   /cmake-modules/msbuildAddDependency
+  /cmake-modules/msbuildAddExecutable
+  /cmake-modules/msbuildAddLibrary
   /cmake-modules/msbuildAddOptionalDeps
+  /cmake-modules/msbuildAddTargetClangFormat
   /cmake-modules/msbuildAddTargetCleanAll
+  /cmake-modules/msbuildAddUnittest
   /cmake-modules/msbuildCMakeInit
+  /cmake-modules/msbuildCheckAndSetCXXFlag
+  /cmake-modules/msbuildCheckCXXFlag
+  /cmake-modules/msbuildCheckInSourceBuild
   /cmake-modules/msbuildCloneRepository
+  /cmake-modules/msbuildCombineLibraries
+  /cmake-modules/msbuildConfigureFile
   /cmake-modules/msbuildFindPackage
+  /cmake-modules/msbuildFindPythonModule
   /cmake-modules/msbuildGenerateCMakeScript
+  /cmake-modules/msbuildGetArchitectureInfo
   /cmake-modules/msbuildGetCacheVariables
   /cmake-modules/msbuildGetCompilerInfo
+  /cmake-modules/msbuildGetGitHeadRevision
+  /cmake-modules/msbuildGetPlatformInfo
   /cmake-modules/msbuildGetScriptDir
   /cmake-modules/msbuildIncludeGuard
   /cmake-modules/msbuildMakeCMakeScript
   /cmake-modules/msbuildMakePackageInfo
+  /cmake-modules/msbuildMakeStringPair
+  /cmake-modules/msbuildReportResult
   /cmake-modules/msbuildRequireArg
   /cmake-modules/msbuildRequireOnlyOneOf
+  /cmake-modules/msbuildSetCXXStandard
   /cmake-modules/msbuildSetDownloadDir
   /cmake-modules/msbuildSetExternalProperties
 

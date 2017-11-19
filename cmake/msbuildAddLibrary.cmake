@@ -21,7 +21,7 @@ include(CMakeParseArguments)
 # .. _msbuild_add_library:
 #
 # msbuild_add_library
-# ----------------
+# ----------------------------
 #
 # Compile the given sources into an archive or object library. This will provide the CMake targets
 # ``<NAME>Objects``, ``<NAME>Static`` and ``<NAME>Shared`` respectively. 
