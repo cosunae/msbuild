@@ -12,6 +12,10 @@
 ##
 ##===------------------------------------------------------------------------------------------===##
 
+list(APPEND CMAKE_MODULE_PATH "@GTCLANG_MSBUILD_SOURCE_DIR@/cmake")
+
+include(msbuildGenerateCMakeScript)
+
 set(cmake_generated ${CMAKE_BINARY_DIR}/CMakeCache.txt
                     ${CMAKE_BINARY_DIR}/Makefile
                     ${CMAKE_BINARY_DIR}/CTestTestfile.cmake
@@ -26,3 +30,6 @@ foreach(file ${cmake_generated})
     file(REMOVE_RECURSE ${file})
   endif()
 endforeach(file)
+
+msbuild_generate_cmake_script(@CMAKE_SOURCE_DIR@ @CMAKE_BINARY_DIR@)
+
