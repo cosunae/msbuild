@@ -45,8 +45,8 @@ function(msbuild_combine_libraries)
   set(one_value_args NAME INSTALL_DESTINATION VERSION)
   set(multi_value_args OBJECTS DEPENDS)
   cmake_parse_arguments(ARG "${options}" "${one_value_args}" "${multi_value_args}" ${ARGN})
- 
-  msbuild_require_arg("VERSION" ${ARG_VERSION})
+
+  msbuild_require_arg("VERSION" ${ARG_VERSION}) 
   msbuild_require_arg("INSTALL_DESTINATION" ${ARG_INSTALL_DESTINATION})
 
   if(NOT("${ARG_UNPARSED_ARGUMENTS}" STREQUAL ""))
