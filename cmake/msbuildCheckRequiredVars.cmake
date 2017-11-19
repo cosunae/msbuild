@@ -40,7 +40,7 @@ function(msbuild_check_required_vars)
   cmake_parse_arguments(ARG "${options}" "${one_value_args}" "${multi_value_args}" ${ARGN})
 
   foreach(arg ${ARG_REQUIRED_VARS})
-    if(NOT(${arg} IN_LIST ${ARG_SET_VARS}))
+    if(NOT("${arg}" IN_LIST ARG_SET_VARS))
       message(FATAL_ERROR "A required variable, ${arg}, is not in present in the list of variables being set: ${ARG_SET_VARS}")
     endif()
   endforeach()
