@@ -12,18 +12,18 @@
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-include(DawnIncludeGuard)
-dawn_include_guard()
+include(msbuildIncludeGuard)
+msbuild_include_guard()
 
 #.rst:
-# dawn_find_python_module
+# msbuild_find_python_module
 # -----------------------
 #
 # Try to find a specific python module.
 #
 # .. code-block:: cmake
 #
-#   dawn_find_python_module(MODULE [REQUIRED])
+#   msbuild_find_python_module(MODULE [REQUIRED])
 #
 # ``MODULE``
 #   Python module to find.
@@ -42,7 +42,7 @@ dawn_include_guard()
 # ``PYTHON_<module>_PATH``    
 #   Path to the module where ``<module>`` is the python module to search for in all uppercase.
 #
-function(dawn_find_python_module MODULE)
+function(msbuild_find_python_module MODULE)
   string(TOUPPER ${MODULE} module_upper)
 
   if(NOT PYTHON_${module_upper}_FOUND)
@@ -87,4 +87,4 @@ function(dawn_find_python_module MODULE)
         endif()
     endif()
   endif(NOT PYTHON_${module_upper}_FOUND)
-endfunction(dawn_find_python_module)
+endfunction(msbuild_find_python_module)
