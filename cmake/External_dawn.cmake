@@ -62,6 +62,6 @@ function(msbuild_external_package)
     )
   endif()
 
-  set(dawn_DIR "${install_dir}/dawn" CACHE INTERNAL "")
+  set(DAWN_ROOT "${source_dir}/install" CACHE INTERNAL "")
 
 endfunction()
