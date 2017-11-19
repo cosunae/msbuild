@@ -48,9 +48,9 @@ function(msbuild_clone_repository)
   set(multi_value_args)
   cmake_parse_arguments(ARG "${options}" "${one_value_args}" "${multi_value_args}" ${ARGN})
 
-  msbuild_require_arg("ARG_UNPARSE_ARGUMENTS" ARG_UNPARSE_ARGUMENTS)
-  msbuild_require_arg("ARG_NAME" ARG_NAME)
-  msbuild_require_arg("ARG_SOURCE_DIR" ARG_SOURCE_DIR)
+  msbuild_require_arg("ARG_UNPARSE_ARGUMENTS" ${ARG_UNPARSE_ARGUMENTS})
+  msbuild_require_arg("ARG_NAME" ${ARG_NAME})
+  msbuild_require_arg("ARG_SOURCE_DIR" ${ARG_SOURCE_DIR})
 
   string(TOUPPER ${ARG_NAME} upper_name)
   set(source_dir "${CMAKE_SOURCE_DIR}/${ARG_NAME}")

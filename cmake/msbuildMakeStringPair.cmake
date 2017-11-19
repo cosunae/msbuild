@@ -12,11 +12,11 @@
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-include(DawnIncludeGuard)
-dawn_include_guard()
+include(msbuildIncludeGuard)
+msbuild_include_guard()
 
 #.rst:
-# dawn_make_string_pair
+# msbuild_make_string_pair
 # ---------------------
 #
 # Create a formatted string of the given string pair.
@@ -24,7 +24,7 @@ dawn_include_guard()
 #
 # .. code-block:: cmake
 #
-#   dawn_make_string_pair(FIRST SECOND NUM_CHARS OUT_STRING)
+#   msbuild_make_string_pair(FIRST SECOND NUM_CHARS OUT_STRING)
 #
 # ``FIRST``
 #   First string.
@@ -45,12 +45,12 @@ dawn_include_guard()
 # ^^^^^^^
 # .. code-block:: cmake
 #
-#   dawn_make_string_pair(Foo Bar1 10 out_var1)
-#   dawn_make_string_pair(LongerFoo Bar2 10 out_var2)
+#   msbuild_make_string_pair(Foo Bar1 10 out_var1)
+#   msbuild_make_string_pair(LongerFoo Bar2 10 out_var2)
 #   message(${out_var1}) # "Foo       Bar1"
 #   message(${out_var2}) # "LongerFoo Bar2"
 #
-function(dawn_make_string_pair FIRST SECOND NUM_CHARS OUT_STRING)
+function(msbuild_make_string_pair FIRST SECOND NUM_CHARS OUT_STRING)
   set(max_length ${NUM_CHARS})
   string(LENGTH ${FIRST} first_name_length)
   math(EXPR indent_length "${max_length} - ${first_name_length}")

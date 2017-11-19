@@ -12,20 +12,20 @@
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-include(DawnIncludeGuard)
-dawn_include_guard()
+include(msbuildIncludeGuard)
+msbuild_include_guard()
 
 #.rst:
-# dawn_check_in_source_build
+# msbuild_check_in_source_build
 # --------------------------
 #
 # Abort with a meaningful error message if ``CMAKE_BINARY_DIR`` matches ``CMAKE_SOURCE_DIR``.
 #
 # .. code-block:: cmake
 #
-#   dawn_check_in_source_build()  
+#   msbuild_check_in_source_build()  
 #
-function(dawn_check_in_source_build)
+function(msbuild_check_in_source_build)
   if(CMAKE_SOURCE_DIR STREQUAL CMAKE_BINARY_DIR AND NOT MSVC_IDE)
     message(FATAL_ERROR "
   ### In-source builds are not allowed.

@@ -12,8 +12,8 @@
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-include(DawnIncludeGuard)
-dawn_include_guard()
+include(msbuildIncludeGuard)
+msbuild_include_guard()
 
 #.rst:
 # dawn_get_architecture_info
@@ -23,14 +23,14 @@ dawn_include_guard()
 #
 # .. code-block:: cmake
 #
-#   dawn_get_architecture_info()
+#   msbuild_get_architecture_info()
 #
 # The functions defines the following variable:
 #
-# ``DAWN_ARCHITECTURE_STRING``
+# ``MSBUILD_ARCHITECTURE_STRING``
 #   String of the architecture.
 #
-macro(dawn_get_architecture_info)
-  set(DAWN_ARCHITECTURE_STRING "${CMAKE_SYSTEM_PROCESSOR}" 
+macro(msbuild_get_architecture_info)
+  set(MSBUILD_ARCHITECTURE_STRING "${CMAKE_SYSTEM_PROCESSOR}" 
     CACHE INTERNAL "Architecture string" FORCE)
 endmacro()
