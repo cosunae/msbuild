@@ -12,36 +12,37 @@
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-include(DawnIncludeGuard)
-dawn_include_guard()
+include(msbuildIncludeGuard)
+msbuild_include_guard()
 
-include(DawnGetScriptDir)
+include(msbuildGetScriptDir)
 
 #.rst:
-# dawn_add_target_clean_all
-# -------------------------
+# msbuild_add_target_clean_all
+# -------------------------------
 #
 # Provide a ``clean-all`` target which clears the CMake cache and all related CMake files and 
 # directories. This effectively removes the following files/directories:
 #
 #    - ``${CMAKE_BINARY_DIR}/CMakeCache.txt``
+#    - ``${CMAKE_BINARY_DIR}/Makefile``
 #    - ``${CMAKE_BINARY_DIR}/CTestTestfile.cmake``
 #    - ``${CMAKE_BINARY_DIR}/cmake_install.cmake``
 #    - ``${CMAKE_BINARY_DIR}/CMakeFiles``
 #
 # .. code-block:: cmake
 #
-#  dawn_add_target_clean_all([ARGN...])
+#  msbuild_add_target_clean_all([dirs...])
 #
-# ``ARGN``
+# ``dirs``
 #   Addtional files or directories to remove.
 #
-function(dawn_add_target_clean_all)
-  dawn_get_script_dir(script_dir)
-  set(dawn_add_target_clean_all_extra_args ${ARGN})
+function(msbuild_add_target_clean_all)
+  msbuild_get_script_dir(script_dir)
+  set(msbuild_add_target_clean_all_extra_args ${ARGN})
 
-  set(input_script ${script_dir}/DawnAddTargetCleanAll-Script.cmake.in)
-  set(output_script ${CMAKE_BINARY_DIR}/dawn-cmake/cmake/DawnAddTargetCleanAll-Script.cmake)
+  set(input_script ${script_dir}/msbuildAddTargetCleanAll-Script.cmake.in)
+  set(output_script ${CMAKE_BINARY_DIR}/msbuild-cmake/cmake/msbuildAddTargetCleanAll-Script.cmake)
 
   # Configure the script
   configure_file(${input_script} ${output_script} @ONLY)

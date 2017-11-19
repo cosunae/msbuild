@@ -20,6 +20,8 @@ include(msbuildRequireArg)
 include(msbuildAddOptionalDeps)
 include(msbuildGetCacheVariables)
 
+#.rst:
+#
 # msbuild_find_package
 # ------------------------
 #
@@ -31,15 +33,26 @@ include(msbuildGetCacheVariables)
 # supplied by the system. Note that USE_SYSTEM_<PACKAGE> does not honor the user setting if 
 # the package cannot be found (i.e it will build it regardlessly).
 #
-#    PACKAGE:STRING=<>        - Name of the package (has to be the same name as used in 
+# .. code-block:: cmake
+#
+#   msbuild_find_package(PACKAGE "package" PACKAGE_ARGS "package_args" 
+#           REQUIRED_VARS "required_vars" VERSION_VAR "version_var")
+#
+#
+# ``PACKAGE:STRING``
+#   - Name of the package (has to be the same name as used in 
 #                               find_package).
-#    PACKAGE_ARGS:LIST=<>     - Arguments passed to find_package.
-#    REQUIRED_VARS:LIST=<>    - Variables which need to be TRUE to consider the package as 
+# ``PACKAGE_ARGS:LIST``
+#   - Arguments passed to find_package.
+# ``REQUIRED_VARS:LIST``
+#   - Variables which need to be TRUE to consider the package as 
 #                               found. By default we check that <PACKAGE>_FOUND is TRUE.
-#    VERSION_VAR:STRING=<>    - Name of the variable which is defined by the find_package command
+# ``VERSION_VAR:STRING``
+#   - Name of the variable which is defined by the find_package command
 #                               to provide the version. By default we use <PACKAGE>_VERSION (or a 
 #                               variation thereof).
-#    BUILD_VERSION:STRING=<>  - Version of the package which is built (if required)
+# ``BUILD_VERSION:STRING``
+#   - Version of the package which is built (if required)
 #
 macro(msbuild_find_package)
   set(options)

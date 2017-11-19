@@ -15,36 +15,42 @@
 ##===------------------------------------------------------------------------------------------===##
 
 include(CMakeParseArguments)
+include(msbuildRequireArg)
+include(msbuildIncludeGuard)
 
-# gtclang_clone_repository
+msbuild_include_guard()
+
+#.rst:
+# msbuild_clone_repository
 # ----------------------------
 #
-# This will make sure the repository NAME exists and, if not, will clone the branch BRANCH 
-# from the git repository given by URL.
+# It clones the repository in the `${PROJECT_SOURCE_DIR}`
+# If the project is already cloned, the function will return without any other action
+# 
+# .. code-block:: cmake
+# 
+#   msbuild_clone_repository(NAME URL BRANCH SOURCE_DIR)
 #
-#                NAME:STRING=<>           - Name of the repository
-#                URL:STRING=<>            - Version of the package
-#                BRANCH:STRING=<>         - Do we use the system version of the package?
-#    \param[out] SOURCE_DIR:STRING=<>     - Name of the variable that contains the source dir where
-
-function(gtclang_clone_repository)
+# * Input arguments:
+# 
+#  ``NAME:STRING``
+#    Name of the repository
+#  ``URL:STRING``
+#    url of the git repository
+#  ``BRANCH:STRING``
+#    branch of the respotory
+#  ``SOURCE_DIR:STRING``
+#    Root source directory where the package will be cloned
+#
+function(msbuild_clone_repository)
   set(options)
   set(one_value_args NAME URL BRANCH SOURCE_DIR)
   set(multi_value_args)
   cmake_parse_arguments(ARG "${options}" "${one_value_args}" "${multi_value_args}" ${ARGN})
 
-  if(NOT("${ARG_UNPARSED_ARGUMENTS}" STREQUAL ""))
-    message(FATAL_ERROR "invalid argument ${ARG_UNPARSED_ARGUMENTS}")
-  endif()
-
-  if(NOT(DEFINED ARG_NAME)) 
-    message(FATAL_ERROR "name not specified")
-  endif()
-
-  if(NOT(DEFINED ARG_SOURCE_DIR))
-    message(FATAL_ERROR "SOURCE_DIR not specified")
-  endif()
-
+  msbuild_require_arg("ARG_UNPARSE_ARGUMENTS" ARG_UNPARSE_ARGUMENTS)
+  msbuild_require_arg("ARG_NAME" ARG_NAME)
+  msbuild_require_arg("ARG_SOURCE_DIR" ARG_SOURCE_DIR)
 
   string(TOUPPER ${ARG_NAME} upper_name)
   set(source_dir "${CMAKE_SOURCE_DIR}/${ARG_NAME}")

@@ -35,7 +35,6 @@ Each function and macro uses a `snake-case <https://en.wikipedia.org/wiki/Snake_
   /cmake-modules/DawnAddExecutable
   /cmake-modules/DawnAddLibrary
   /cmake-modules/DawnAddTargetClangFormat
-  /cmake-modules/DawnAddTargetCleanAll
   /cmake-modules/DawnAddUnittest
   /cmake-modules/DawnCMakeInit
   /cmake-modules/DawnCheckAndSetCXXFlag
@@ -63,12 +62,14 @@ Each function and macro uses a `snake-case <https://en.wikipedia.org/wiki/Snake_
   /cmake-modules/msbuildAddCustomDummyTarget
   /cmake-modules/msbuildAddDependency
   /cmake-modules/msbuildAddOptionalDeps
+  /cmake-modules/msbuildAddTargetCleanAll
   /cmake-modules/msbuildCMakeInit
-  /cmake-modules/msbuildClone
   /cmake-modules/msbuildCloneRepository
   /cmake-modules/msbuildFindPackage
+  /cmake-modules/msbuildGenerateCMakeScript
   /cmake-modules/msbuildGetCacheVariables
   /cmake-modules/msbuildGetCompilerInfo
+  /cmake-modules/msbuildGetScriptDir
   /cmake-modules/msbuildIncludeGuard
   /cmake-modules/msbuildMakeCMakeScript
   /cmake-modules/msbuildMakePackageInfo

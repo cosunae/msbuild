@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>&lt;no title&gt; &mdash; Dawn  documentation</title>
+  <title>msbuild_clone_repository &mdash; Dawn  documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="Dawn  documentation" href="../index.html"/>
         <link rel="up" title="CMake Modules" href="../cmake-modules.html"/>
-        <link rel="next" title="&lt;no title&gt;" href="msbuildCloneRepository.html"/>
+        <link rel="next" title="msbuild_clone_repository" href="msbuildCloneRepository.html"/>
         <link rel="prev" title="msbuild_cmake_init" href="msbuildCMakeInit.html"/> 
 
   
@@ -88,10 +88,10 @@
             
             
               <p class="caption"><span class="caption-text">The Basics</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../cmake-modules.html">CMake Modules</a><ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../cmake-modules.html">CMake Modules</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../cmake-modules.html#installation">Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../cmake-modules.html#functions-macros">Functions &amp; Macros</a><ul>
+<li class="toctree-l2 current"><a class="reference internal" href="../cmake-modules.html#functions-macros">Functions &amp; Macros</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="DawnAddExecutable.html">dawn_add_executable</a></li>
 <li class="toctree-l3"><a class="reference internal" href="DawnAddLibrary.html">dawn_add_library</a></li>
 <li class="toctree-l3"><a class="reference internal" href="DawnAddTargetClangFormat.html">dawn_add_target_clang_format</a></li>
@@ -115,6 +115,8 @@
 <li class="toctree-l3"><a class="reference internal" href="DawnSetCXXStandard.html">dawn_set_cxx_standard</a></li>
 <li class="toctree-l3"><a class="reference internal" href="msbuildAddCustomDummyTarget.html">msbuild_add_custom_dummy_target</a></li>
 <li class="toctree-l3"><a class="reference internal" href="msbuildCMakeInit.html">msbuild_cmake_init</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">msbuild_clone_repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="msbuildCloneRepository.html">msbuild_clone_repository</a></li>
 <li class="toctree-l3"><a class="reference internal" href="msbuildGetCompilerInfo.html">msbuid_get_compiler_info</a></li>
 <li class="toctree-l3"><a class="reference internal" href="msbuildIncludeGuard.html">msbuild_include_guard</a></li>
 </ul>
@@ -176,7 +178,7 @@
         
           <li><a href="../cmake-modules.html">CMake Modules</a> &raquo;</li>
         
-      <li>&lt;no title&gt;</li>
+      <li>msbuild_clone_repository</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -199,6 +201,27 @@
             
   <div class="toctree-wrapper compound">
 </div>
+<div class="section" id="msbuild-clone-repository">
+<h1>msbuild_clone_repository<a class="headerlink" href="#msbuild-clone-repository" title="Permalink to this headline">¶</a></h1>
+<p>It clones the repository in the <cite>${PROJECT_SOURCE_DIR}</cite>
+It the project is already cloned, the function will return without any other action</p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">msbuild_clone_repository</span><span class="p">(</span><span class="s">NAME</span> <span class="s">URL</span> <span class="s">BRANCH</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Input arguments:</li>
+</ul>
+<blockquote>
+<div><dl class="docutils">
+<dt><code class="docutils literal"><span class="pre">NAME:STRING</span></code></dt>
+<dd>Name of the repository</dd>
+<dt><code class="docutils literal"><span class="pre">URL:STRING</span></code></dt>
+<dd>Version of the package</dd>
+<dt><code class="docutils literal"><span class="pre">BRANCH:STRING</span></code></dt>
+<dd>Do we use the system version of the package?</dd>
+</dl>
+</div></blockquote>
+</div>
 
 
            </div>
@@ -210,7 +233,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="msbuildCloneRepository.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="msbuildCloneRepository.html" class="btn btn-neutral float-right" title="msbuild_clone_repository" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="msbuildCMakeInit.html" class="btn btn-neutral" title="msbuild_cmake_init" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

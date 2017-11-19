@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>&lt;no title&gt; &mdash; Dawn  documentation</title>
+  <title>msbuild_get_cache_variables &mdash; Dawn  documentation</title>
   
 
   
@@ -38,7 +38,7 @@
     <link rel="top" title="Dawn  documentation" href="../index.html"/>
         <link rel="up" title="CMake Modules" href="../cmake-modules.html"/>
         <link rel="next" title="msbuid_get_compiler_info" href="msbuildGetCompilerInfo.html"/>
-        <link rel="prev" title="&lt;no title&gt;" href="msbuildFindPackage.html"/> 
+        <link rel="prev" title="msbuild_generate_cmake_script" href="msbuildGenerateCMakeScript.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -88,14 +88,13 @@
             
             
               <p class="caption"><span class="caption-text">The Basics</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../cmake-modules.html">CMake Modules</a><ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../cmake-modules.html">CMake Modules</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../cmake-modules.html#installation">Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../cmake-modules.html#functions-macros">Functions &amp; Macros</a><ul>
+<li class="toctree-l2 current"><a class="reference internal" href="../cmake-modules.html#functions-macros">Functions &amp; Macros</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="DawnAddExecutable.html">dawn_add_executable</a></li>
 <li class="toctree-l3"><a class="reference internal" href="DawnAddLibrary.html">dawn_add_library</a></li>
 <li class="toctree-l3"><a class="reference internal" href="DawnAddTargetClangFormat.html">dawn_add_target_clang_format</a></li>
-<li class="toctree-l3"><a class="reference internal" href="DawnAddTargetCleanAll.html">dawn_add_target_clean_all</a></li>
 <li class="toctree-l3"><a class="reference internal" href="DawnAddUnittest.html">dawn_add_unittest</a></li>
 <li class="toctree-l3"><a class="reference internal" href="DawnCMakeInit.html">dawn_cmake_init</a></li>
 <li class="toctree-l3"><a class="reference internal" href="DawnCheckAndSetCXXFlag.html">dawn_check_and_set_cxx_flag</a></li>
@@ -114,9 +113,16 @@
 <li class="toctree-l3"><a class="reference internal" href="DawnReportResult.html">dawn_report_result</a></li>
 <li class="toctree-l3"><a class="reference internal" href="DawnSetCXXStandard.html">dawn_set_cxx_standard</a></li>
 <li class="toctree-l3"><a class="reference internal" href="msbuildAddCustomDummyTarget.html">msbuild_add_custom_dummy_target</a></li>
+<li class="toctree-l3"><a class="reference internal" href="msbuildAddTargetCleanAll.html">msbuild_add_target_clean_all</a></li>
 <li class="toctree-l3"><a class="reference internal" href="msbuildCMakeInit.html">msbuild_cmake_init</a></li>
+<li class="toctree-l3"><a class="reference internal" href="msbuildCloneRepository.html">msbuild_clone_repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="msbuildFindPackage.html">msbuild_find_package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="msbuildGenerateCMakeScript.html">msbuild_generate_cmake_script</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">msbuild_get_cache_variables</a></li>
 <li class="toctree-l3"><a class="reference internal" href="msbuildGetCompilerInfo.html">msbuid_get_compiler_info</a></li>
+<li class="toctree-l3"><a class="reference internal" href="msbuildGetScriptDir.html">msbuild_get_script_dir</a></li>
 <li class="toctree-l3"><a class="reference internal" href="msbuildIncludeGuard.html">msbuild_include_guard</a></li>
+<li class="toctree-l3"><a class="reference internal" href="msbuildRequireArg.html">msbuild_require_arg</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../cmake-modules.html#modules">Modules</a><ul>
@@ -176,7 +182,7 @@
         
           <li><a href="../cmake-modules.html">CMake Modules</a> &raquo;</li>
         
-      <li>&lt;no title&gt;</li>
+      <li>msbuild_get_cache_variables</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -199,6 +205,21 @@
             
   <div class="toctree-wrapper compound">
 </div>
+<div class="section" id="msbuild-get-cache-variables">
+<h1>msbuild_get_cache_variables<a class="headerlink" href="#msbuild-get-cache-variables" title="Permalink to this headline">¶</a></h1>
+<p>It returns, in the output variable, the list of cmake args used to 
+call cmake from command line</p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">msbuild_get_cache_variables</span><span class="p">(</span><span class="s">CMAKE_ARGS</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Output arguments:</li>
+</ul>
+<dl class="docutils">
+<dt><code class="docutils literal"><span class="pre">CMAKE_ARGS:LIST</span></code></dt>
+<dd>Variable which will contain the list of cmake arguments</dd>
+</dl>
+</div>
 
 
            </div>
@@ -213,7 +234,7 @@
         <a href="msbuildGetCompilerInfo.html" class="btn btn-neutral float-right" title="msbuid_get_compiler_info" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="msbuildFindPackage.html" class="btn btn-neutral" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="msbuildGenerateCMakeScript.html" class="btn btn-neutral" title="msbuild_generate_cmake_script" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

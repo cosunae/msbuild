@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>dawn_add_executable &mdash; Dawn  documentation</title>
+  <title>msbuild_get_script_dir &mdash; Dawn  documentation</title>
   
 
   
@@ -37,8 +37,8 @@
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="Dawn  documentation" href="../index.html"/>
         <link rel="up" title="CMake Modules" href="../cmake-modules.html"/>
-        <link rel="next" title="dawn_add_library" href="DawnAddLibrary.html"/>
-        <link rel="prev" title="CMake Modules" href="../cmake-modules.html"/> 
+        <link rel="next" title="msbuild_include_guard" href="msbuildIncludeGuard.html"/>
+        <link rel="prev" title="msbuid_get_compiler_info" href="msbuildGetCompilerInfo.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -92,7 +92,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../cmake-modules.html">CMake Modules</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../cmake-modules.html#installation">Installation</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../cmake-modules.html#functions-macros">Functions &amp; Macros</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">dawn_add_executable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DawnAddExecutable.html">dawn_add_executable</a></li>
 <li class="toctree-l3"><a class="reference internal" href="DawnAddLibrary.html">dawn_add_library</a></li>
 <li class="toctree-l3"><a class="reference internal" href="DawnAddTargetClangFormat.html">dawn_add_target_clang_format</a></li>
 <li class="toctree-l3"><a class="reference internal" href="DawnAddUnittest.html">dawn_add_unittest</a></li>
@@ -120,7 +120,7 @@
 <li class="toctree-l3"><a class="reference internal" href="msbuildGenerateCMakeScript.html">msbuild_generate_cmake_script</a></li>
 <li class="toctree-l3"><a class="reference internal" href="msbuildGetCacheVariables.html">msbuild_get_cache_variables</a></li>
 <li class="toctree-l3"><a class="reference internal" href="msbuildGetCompilerInfo.html">msbuid_get_compiler_info</a></li>
-<li class="toctree-l3"><a class="reference internal" href="msbuildGetScriptDir.html">msbuild_get_script_dir</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">msbuild_get_script_dir</a></li>
 <li class="toctree-l3"><a class="reference internal" href="msbuildIncludeGuard.html">msbuild_include_guard</a></li>
 <li class="toctree-l3"><a class="reference internal" href="msbuildRequireArg.html">msbuild_require_arg</a></li>
 </ul>
@@ -182,14 +182,14 @@
         
           <li><a href="../cmake-modules.html">CMake Modules</a> &raquo;</li>
         
-      <li>dawn_add_executable</li>
+      <li>msbuild_get_script_dir</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/thfabian/dawn/blob/master/docs/cmake-modules/DawnAddExecutable.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/thfabian/dawn/blob/master/docs/cmake-modules/msbuildGetScriptDir.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -205,24 +205,23 @@
             
   <div class="toctree-wrapper compound">
 </div>
-<div class="section" id="dawn-add-executable">
-<h1>dawn_add_executable<a class="headerlink" href="#dawn-add-executable" title="Permalink to this headline">¶</a></h1>
-<p>Compile the given objects into a runnable executable (.exe).</p>
-<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">dawn_add_executable</span><span class="p">(</span><span class="s">NAME</span> <span class="s">SOURCES</span> <span class="s">DEPENDS</span> <span class="s">[OUTPUT_DIR]</span><span class="p">)</span>
+<div class="section" id="msbuild-get-script-dir">
+<h1>msbuild_get_script_dir<a class="headerlink" href="#msbuild-get-script-dir" title="Permalink to this headline">¶</a></h1>
+<p>Get the directory of the scripts located <code class="docutils literal"><span class="pre">&lt;msbuild-root&gt;/cmake/scripts</span></code>.</p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">msbuild_get_script_dir</span><span class="p">(</span><span class="s">SCRIPT_DIR_VAR</span><span class="p">)</span>
 </pre></div>
 </div>
+<ul class="simple">
+<li>Output arguments:</li>
+</ul>
 <dl class="docutils">
-<dt><code class="docutils literal"><span class="pre">NAME</span></code></dt>
-<dd>Name of the exectuable as well as the CMake target to build it.</dd>
-<dt><code class="docutils literal"><span class="pre">SOURCES</span></code></dt>
-<dd>List of source files making up the exectuable.</dd>
-<dt><code class="docutils literal"><span class="pre">DEPENDS</span></code></dt>
-<dd>List of external libraries and/or CMake targets to link against.</dd>
-<dt><code class="docutils literal"><span class="pre">OUTPUT_DIR</span></code> [optional]</dt>
-<dd>Directory to place the exectuable (e.g <code class="docutils literal"><span class="pre">${CMAKE_BINARY_DIR}/bin</span></code>).</dd>
-<dt><code class="docutils literal"><span class="pre">INSTALL_DESTINATION</span></code> [optional]</dt>
-<dd>Destition (relative to <code class="docutils literal"><span class="pre">CMAKE_INSTALL_PREFIX</span></code>) to install the executable.</dd>
+<dt><code class="docutils literal"><span class="pre">SCRIPT_DIR_VAR</span></code></dt>
+<dd>Variable which will contain the script directory on output.</dd>
 </dl>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This function is for internal use only.</p>
+</div>
 </div>
 
 
@@ -235,10 +234,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="DawnAddLibrary.html" class="btn btn-neutral float-right" title="dawn_add_library" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="msbuildIncludeGuard.html" class="btn btn-neutral float-right" title="msbuild_include_guard" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../cmake-modules.html" class="btn btn-neutral" title="CMake Modules" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="msbuildGetCompilerInfo.html" class="btn btn-neutral" title="msbuid_get_compiler_info" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

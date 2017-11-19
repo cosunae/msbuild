@@ -24,9 +24,17 @@ include(CMakeParseArguments)
 # Creates a dummy target with list of C++ files contained in the list of provided directories.
 # The function is used to create dummy targets with files that are not included in any other target
 # of the project so that qt creator loads them in the project.
-#    
-#    NAME:STRING=<>             - Name of the dummy custom target
-#    DIRECTORIES:STRING=<>      - List of directories that contain the source files
+# 
+# .. code-block:: cmake
+#
+#   msbuild_add_custom_dummy_target(NAME DIRECTORIES)
+#
+# * Input arguments:
+#
+#  ``NAME:STRING``
+#    Name of the dummy custom target
+#  ``DIRECTORIES:STRING``
+#    List of directories that contain the source files
 #
 function(msbuild_add_custom_dummy_target)
   # Parse arguments

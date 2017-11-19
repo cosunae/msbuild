@@ -31,6 +31,11 @@ cmake_minimum_required(VERSION 3.3)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 
+include(msbuildAddTargetCleanAll)
+include(msbuildGenerateCMakeScript)
+
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
+
 set(MSBUILD_DOCUMENTATION ON CACHE BOOL "Build documentation" FORCE)
 
 if(MSBUILD_DOCUMENTATION)
@@ -39,3 +44,14 @@ if(MSBUILD_DOCUMENTATION)
   add_subdirectory(docs)
 
 endif()
+
+# Add custom targets
+msbuild_add_target_clean_all(
+  ${CMAKE_SOURCE_DIR}/docs/cmake-modules
+  ${CMAKE_BINARY_DIR}/msbuild-cmake
+  ${CMAKE_BINARY_DIR}/sphinx
+  ${CMAKE_BINARY_DIR}/docs
+)
+
+msbuild_generate_cmake_script(${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR})
+

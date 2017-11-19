@@ -1,4 +1,36 @@
+##===------------------------------------------------------------------------------*- CMake -*-===##
+##                          _                      
+##                         | |                     
+##                       __| | __ ___      ___ ___  
+##                      / _` |/ _` \ \ /\ / / '_  | 
+##                     | (_| | (_| |\ V  V /| | | |
+##                      \__,_|\__,_| \_/\_/ |_| |_| - Compiler Toolchain
+##
+##
+##  This file is distributed under the MIT License (MIT). 
+##  See LICENSE.txt for details.
+##
+##===------------------------------------------------------------------------------------------===##
 
+include(msbuildIncludeGuard)
+msbuild_include_guard()
+
+#.rst:
+# msbuild_get_cache_variables
+# ----------------------------
+#
+# It returns, in the output variable, the list of cmake args used to 
+# call cmake from command line
+#
+# .. code-block:: cmake
+#
+#   msbuild_get_cache_variables(CMAKE_ARGS)
+# 
+# * Output arguments:
+#
+# ``CMAKE_ARGS:LIST``
+#   Variable which will contain the list of cmake arguments
+#
 function(msbuild_get_cache_variables CMAKE_ARGS_)
   get_cmake_property(CACHE_VARS CACHE_VARIABLES)
 
