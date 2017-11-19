@@ -12,13 +12,13 @@
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-include(DawnIncludeGuard)
-dawn_include_guard()
+include(msbuildIncludeGuard)
+msbuild_include_guard()
 
-include(DawnGetScriptDir)
+include(msbuildGetScriptDir)
 
 #.rst:
-# dawn_get_git_head_revision
+# msbuild_get_git_head_revision
 # --------------------------
 #
 # These functions force a re-configure on each git commit so that you can trust the values of the 
@@ -26,14 +26,14 @@ include(DawnGetScriptDir)
 #
 # .. code-block:: cmake
 #
-#   dawn_get_git_head_revision(HEAD_REF HEAD_HASH)
+#   msbuild_get_git_head_revision(HEAD_REF HEAD_HASH)
 # 
 # ``HEAD_REF``
 #   The `Refspec <https://git-scm.com/book/en/v2/Git-Internals-The-Refspec>`_.
 # ``HEAD_HASH``
 #   sha1 hash of the current head revision.
 #
-function(dawn_get_git_head_revision HEAD_REF HEAD_HASH)
+function(msbuild_get_git_head_revision HEAD_REF HEAD_HASH)
   set(git_parent_dir "${CMAKE_CURRENT_SOURCE_DIR}")
   set(git_dir "${git_parent_dir}/.git")
 
@@ -72,8 +72,8 @@ function(dawn_get_git_head_revision HEAD_REF HEAD_HASH)
   set(head_file ${git_data_dir}/HEAD)
   configure_file("${git_dir}/HEAD" "${head_file}" COPYONLY)
 
-  dawn_get_script_dir(script_dir)
-  set(input_script ${script_dir}/DawnGetGitHeadRevision-Script.cmake.in)
+  msbuild_get_script_dir(script_dir)
+  set(input_script ${script_dir}/msbuildGetGitHeadRevision-Script.cmake.in)
   set(output_script ${CMAKE_BINARY_DIR}/CMakeFiles/git-data/cmake/DawnGetGitHeadRevision-Script.cmake)
 
   # Configure the script

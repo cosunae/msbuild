@@ -12,13 +12,14 @@
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-include(DawnIncludeGuard)
-dawn_include_guard()
+include(msbuildIncludeGuard)
+msbuild_include_guard()
 
 include(CMakeParseArguments)
+include(msbuildRequireArg)
 
 #.rst:
-# dawn_combine_libraries
+# msbuild_combine_libraries
 # ----------------------
 #
 # Combine multiple object libraries to a single static and, if ``BUILD_SHARED_LIBS`` is ON, shared 
@@ -28,25 +29,28 @@ include(CMakeParseArguments)
 #
 # .. code-block:: cmake
 #
-#   dawn_combine_libraries(NAME OBJECTS DEPENDS)
+#   msbuild_combine_libraries(NAME OBJECTS DEPENDS)
 #
 # ``NAME``
 #   Name of the library.
 # ``OBJECTS``
-#   Object libraries to combine (see :ref:`dawn_add_library`).
+#   Object libraries to combine (see :ref:`msbuild_add_library`).
 # ``INSTALL_DESTINATION``
 #   Destition (relative to ``CMAKE_INSTALL_PREFIX``) to install the libraries.
 # ``DEPENDS`` [optional]
 #   List of external libraries and/or CMake targets treated as dependencies of the library.
 #
-function(dawn_combine_libraries)
+function(msbuild_combine_libraries)
   set(options)
-  set(one_value_args NAME INSTALL_DESTINATION)
+  set(one_value_args NAME INSTALL_DESTINATION VERSION)
   set(multi_value_args OBJECTS DEPENDS)
   cmake_parse_arguments(ARG "${options}" "${one_value_args}" "${multi_value_args}" ${ARGN})
-  
+ 
+  msbuild_require_arg("VERSION" ${ARG_VERSION})
+  msbuild_require_arg("INSTALL_DESTINATION" ${ARG_INSTALL_DESTINATION})
+
   if(NOT("${ARG_UNPARSED_ARGUMENTS}" STREQUAL ""))
-    message(FATAL_ERROR "dawn_combine_libraries: invalid argument ${ARG_UNPARSED_ARGUMENTS}")
+    message(FATAL_ERROR "msbuild_combine_libraries: invalid argument ${ARG_UNPARSED_ARGUMENTS}")
   endif()
 
   if(NOT("${ARG_OBJECTS}" STREQUAL ""))
@@ -61,7 +65,7 @@ function(dawn_combine_libraries)
   target_link_libraries(${ARG_NAME}Static PUBLIC ${ARG_DEPENDS})
 
   set_target_properties(${ARG_NAME}Static PROPERTIES OUTPUT_NAME ${ARG_NAME})
-  set_target_properties(${ARG_NAME}Static PROPERTIES VERSION ${DAWN_VERSION})
+  set_target_properties(${ARG_NAME}Static PROPERTIES VERSION ${ARG_VERSION})
 
   install(TARGETS ${ARG_NAME}Static 
           DESTINATION ${ARG_INSTALL_DESTINATION} 
@@ -73,8 +77,8 @@ function(dawn_combine_libraries)
     target_link_libraries(${ARG_NAME}Shared PUBLIC ${ARG_DEPENDS})
     
     set_target_properties(${ARG_NAME}Shared PROPERTIES OUTPUT_NAME ${ARG_NAME})
-    set_target_properties(${ARG_NAME}Shared PROPERTIES VERSION ${DAWN_VERSION})
-    set_target_properties(${ARG_NAME}Shared PROPERTIES SOVERSION ${DAWN_VERSION})
+    set_target_properties(${ARG_NAME}Shared PROPERTIES VERSION ${ARG_VERSION})
+    set_target_properties(${ARG_NAME}Shared PROPERTIES SOVERSION ${ARG_VERSION})
 
     install(TARGETS ${ARG_NAME}Shared 
             DESTINATION ${ARG_INSTALL_DESTINATION} 
