@@ -12,26 +12,26 @@
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-include(DawnIncludeGuard)
-dawn_include_guard()
+include(msbuildIncludeGuard)
+msbuild_include_guard()
 
 include(CheckCXXCompilerFlag)
 
 #.rst:
-# dawn_check_cxx_flag
+# msbuild_check_cxx_flag
 # -------------------
 #
 # Test if the C++ compiler flag is supported.
 #
 # .. code-block:: cmake
 #
-#   dawn_check_cxx_flag(FLAG NAME)
+#   msbuild_check_cxx_flag(FLAG NAME)
 #
 # ``FLAG``
 #   Compiler flag to check (e.g -O3).
 # ``NAME``
 #   Name of the check (e.g HAVE_GCC_O3).
 #
-macro(dawn_check_cxx_flag FLAG NAME)
+macro(msbuild_check_cxx_flag FLAG NAME)
   check_cxx_compiler_flag("${FLAG}" ${NAME})
 endmacro()
