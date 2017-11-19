@@ -16,7 +16,8 @@
 
 include(ExternalProject)
 include(msbuildSetExternalProperties)
-include (msbuildRequireOnlyOneOf)
+include(msbuildRequireOnlyOneOf)
+include(msbuildCheckRequiredVars)
 
 set(DIR_OF_PROTO_EXTERNAL ${CMAKE_CURRENT_LIST_DIR})  
 
@@ -61,6 +62,7 @@ function(msbuild_external_package)
     )
   endif()
 
+  msbuild_check_required_vars(SET_VARS "DAWN_ROOT" REQUIRED_VARS ${ARG_REQUIRED_VARS})
   set(DAWN_ROOT "${source_dir}/install" CACHE INTERNAL "")
 
 endfunction()

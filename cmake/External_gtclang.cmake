@@ -58,6 +58,7 @@ function(msbuild_external_package)
     )
   endif()
 
+  msbuild_check_required_vars(SET_VARS "gtclang_DIR" REQUIRED_VARS ${ARG_REQUIRED_VARS})
   set(gtclang_DIR "${install_dir}/gtclang" CACHE INTERNAL "")
 
 endfunction()
