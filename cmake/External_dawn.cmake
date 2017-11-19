@@ -62,7 +62,7 @@ function(msbuild_external_package)
     )
   endif()
 
-  msbuild_check_required_vars(SET_VARS "DAWN_ROOT" REQUIRED_VARS ${ARG_REQUIRED_VARS})
-  set(DAWN_ROOT "${source_dir}/install" CACHE INTERNAL "")
+  msbuild_check_required_vars(SET_VARS "dawn_DIR" REQUIRED_VARS ${ARG_REQUIRED_VARS})
+  set(dawn_DIR "${source_dir}/install/cmake" CACHE INTERNAL "")
 
 endfunction()
