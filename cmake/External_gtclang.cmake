@@ -22,13 +22,11 @@ set(DIR_OF_PROTO_EXTERNAL ${CMAKE_CURRENT_LIST_DIR})
 
 function(msbuild_external_package)
   set(options)
-  set(one_value_args URL URL_MD5 DOWNLOAD_DIR SOURCE_DIR GIT_REPOSITORY GIT_TAG)
+  set(one_value_args URL URL_MD5 DOWNLOAD_DIR SOURCE_DIR GIT_REPOSITORY GIT_TAG MSBUILD_ROOT)
   set(multi_value_args REQUIRED_VARS CMAKE_ARGS)
   cmake_parse_arguments(ARG "${options}" "${one_value_args}" "${multi_value_args}" ${ARGN})
 
-message("GROUP1 ${ARG_SOURCE_DIR}
-         GROUP2 ${ARG_GIT_REPOSITORY} ${ARG_GIT_TAG}")
-
+  msbuild_require_arg("MSBUILD_ROOT" ${ARG_MSBUILD_ROOT})
   msbuild_require_only_one_of2(NAME1 "SOURCE_DIR" NAME2 "GIT"
          GROUP1 ${ARG_SOURCE_DIR}
          GROUP2 ${ARG_GIT_REPOSITORY} ${ARG_GIT_TAG})
@@ -41,6 +39,7 @@ message("GROUP1 ${ARG_SOURCE_DIR}
     INSTALL_DIR install_dir 
     SOURCE_DIR source_dir)
 
+  list(APPEND ARG_CMAKE_ARGS "-DMSBUILD_ROOT=${ARG_MSBUILD_ROOT}")
   # C++ protobuf
   if(ARG_GIT_REPOSITORY)
     ExternalProject_Add(gtclang
