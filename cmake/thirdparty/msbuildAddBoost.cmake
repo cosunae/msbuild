@@ -31,7 +31,7 @@ msbuild_find_package(
   PACKAGE Boost
   PACKAGE_ARGS ${boost_min_version} 
   COMPONENTS ${boost_components}
-  REQUIRED_VARS BOOST_ROOT Boost_LIBRARY_DIRS Boost_INCLUDE_DIRS
+  REQUIRED_VARS BOOST_ROOT
   ADDITIONAL
     DOWNLOAD_DIR ${MSBUILD_DOWNLOAD_DIR}
     URL "http://sourceforge.net/projects/boost/files/boost/1.${_v}.0/boost_1_${_v}_0.tar.gz/download"

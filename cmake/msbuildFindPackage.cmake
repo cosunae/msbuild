@@ -19,6 +19,7 @@ include(msbuildMakePackageInfo)
 include(msbuildRequireArg)
 include(msbuildAddOptionalDeps)
 include(msbuildGetCacheVariables)
+include(msbuildCheckVarsAreDefined)
 
 #.rst:
 #
@@ -93,6 +94,8 @@ macro(msbuild_find_package)
     set(CMAKE_ARGS)
     msbuild_get_cache_variables(CMAKE_ARGS)
     msbuild_external_package("REQUIRED_VARS" ${ARG_REQUIRED_VARS} "CMAKE_ARGS" ${CMAKE_ARGS} ${ARG_ADDITIONAL})
+    # we check that all required vars are properly set and forwarded here
+    msbuild_check_vars_are_defined(ARG_REQUIRED_VARS)
   else()
     # Check if the system has the package
     find_package(${ARG_PACKAGE} ${ARG_PACKAGE_ARGS} QUIET)
@@ -151,6 +154,9 @@ macro(msbuild_find_package)
       msbuild_get_cache_variables(CMAKE_ARGS)
       include(${external_file})
       msbuild_external_package("REQUIRED_VARS" ${ARG_REQUIRED_VARS} "CMAKE_ARGS" ${CMAKE_ARGS} ${ARG_ADDITIONAL})
+      # we check that all required vars are properly set and forwarded here
+      msbuild_check_vars_are_defined(ARG_REQUIRED_VARS)
+
     endif()
   endif()
 
