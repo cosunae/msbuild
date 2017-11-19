@@ -71,9 +71,13 @@ Each function and macro uses a `snake-case <https://en.wikipedia.org/wiki/Snake_
   /cmake-modules/msbuildCheckAndSetCXXFlag
   /cmake-modules/msbuildCheckCXXFlag
   /cmake-modules/msbuildCheckInSourceBuild
+  /cmake-modules/msbuildCheckRequiredVars
+  /cmake-modules/msbuildCheckVarsAreDefined
   /cmake-modules/msbuildCloneRepository
   /cmake-modules/msbuildCombineLibraries
   /cmake-modules/msbuildConfigureFile
+  /cmake-modules/msbuildCreatePackageString
+  /cmake-modules/msbuildExportPackage
   /cmake-modules/msbuildFindPackage
   /cmake-modules/msbuildFindPythonModule
   /cmake-modules/msbuildGenerateCMakeScript
