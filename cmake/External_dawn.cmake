@@ -40,7 +40,6 @@ function(msbuild_external_package)
     SOURCE_DIR source_dir)
 
   list(APPEND ${ARG_CMAKE_ARGS} "-DMSBUILD_ROOT=${ARG_MSBUILD_ROOT}")
-  set(cmake_args_ ${ARG_CMAKE_ARGS})
   list(APPEND ARG_CMAKE_ARGS "-DMSBUILD_ROOT=${ARG_MSBUILD_ROOT}")
 
   # C++ protobuf
