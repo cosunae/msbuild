@@ -34,6 +34,8 @@ msbuild_include_guard()
 #
 function(msbuild_check_required_vars)
 
+  cmake_policy(SET CMP0057 NEW)
+
   set(options)
   set(one_value_args)
   set(multi_value_args SET_VARS REQUIRED_VARS)
