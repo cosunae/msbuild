@@ -16,7 +16,7 @@ include(msbuildIncludeGuard)
 msbuild_include_guard()
 
 #.rst:
-# msbuild_check_required_vars
+# msbuild_check_vars_are_defined
 # -------------------------------
 #
 # It checks that all the variables within the argument (list) are defined
