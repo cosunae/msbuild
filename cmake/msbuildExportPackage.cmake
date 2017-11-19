@@ -21,7 +21,7 @@ include(CMakeParseArguments)
 # .. _msbuild_export_package:
 #
 # msbuild_export_package
-# -------------------
+# ---------------------------
 #
 # Export a package by defining variable for its libraries, include directories, definition and 
 # version.

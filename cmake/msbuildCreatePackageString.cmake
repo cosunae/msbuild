@@ -21,7 +21,7 @@ include(msbuildMakeStringPair)
 # .. _msbuild_create_package_string:
 #
 # msbuild_create_package_string
-# --------------------------
+# ---------------------------------------
 #
 # Create a package string including the location of the library/include directory and version 
 # string. Note that the package has to be exported via :ref:`msbuild_export_package`.
