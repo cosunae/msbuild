@@ -23,7 +23,7 @@ set(DIR_OF_PROTO_EXTERNAL ${CMAKE_CURRENT_LIST_DIR})
 function(msbuild_external_package)
   set(options)
   set(one_value_args URL URL_MD5 DOWNLOAD_DIR SOURCE_DIR GIT_REPOSITORY GIT_TAG MSBUILD_ROOT)
-  set(multi_value_args REQUIRED_VARS CMAKE_ARGS)
+  set(multi_value_args REQUIRED_VARS FORWARD_VARS CMAKE_ARGS)
   cmake_parse_arguments(ARG "${options}" "${one_value_args}" "${multi_value_args}" ${ARGN})
 
   msbuild_require_arg("MSBUILD_ROOT" ${ARG_MSBUILD_ROOT})
@@ -37,16 +37,17 @@ function(msbuild_external_package)
 
   msbuild_set_external_properties(NAME "gtclang" 
     INSTALL_DIR install_dir 
-    SOURCE_DIR source_dir)
+    SOURCE_DIR source_dir
+    BINARY_DIR binary_dir
+)
 
   list(APPEND ARG_CMAKE_ARGS "-DMSBUILD_ROOT=${ARG_MSBUILD_ROOT}")
   # C++ protobuf
   if(ARG_GIT_REPOSITORY)
     ExternalProject_Add(gtclang
-      DOWNLOAD_DIR ${ARG_DOWNLOAD_DIR}
+      PREFIX gtclang
       GIT_REPOSITORY ${ARG_GIT_REPOSITORY}
       GIT_TAG ${ARG_GIT_TAG}
-      SOURCE_DIR "${source_dir}"
       INSTALL_DIR "${install_dir}"
       CMAKE_ARGS ${ARG_CMAKE_ARGS}
     )
@@ -58,7 +59,22 @@ function(msbuild_external_package)
     )
   endif()
 
-  msbuild_check_required_vars(SET_VARS "gtclang_DIR" REQUIRED_VARS ${ARG_REQUIRED_VARS})
+  msbuild_check_required_vars(SET_VARS gtclang_DIR REQUIRED_VARS ${ARG_REQUIRED_VARS})
+  ##TODO this is the same for all projects, we need to reuse this code
+  if(DEFINED ARG_FORWARD_VARS)
+    set(options)
+    set(one_value_args BINARY_DIR)
+    set(multi_value_args)
+    cmake_parse_arguments(ARGFV "${options}" "${one_value_args}" "${multi_value_args}" ${ARG_FORWARD_VARS})
+
+    if(NOT("${ARGFV_UNPARSED_ARGUMENTS}" STREQUAL ""))
+      message(FATAL_ERROR "invalid argument for FORWARD_VARS ${ARGFV_UNPARSED_ARGUMENTS}")
+    endif()
+
+    set(${ARGFV_BINARY_DIR} ${binary_dir} PARENT_SCOPE)
+
+  endif()
+
   set(gtclang_DIR "${install_dir}/gtclang" CACHE INTERNAL "")
 
 endfunction()
