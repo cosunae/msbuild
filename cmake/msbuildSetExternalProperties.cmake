@@ -44,7 +44,7 @@ include(CMakeParseArguments)
 #
 function(msbuild_set_external_properties)
   set(options)
-  set(one_value_args NAME INSTALL_DIR SOURCE_DIR)
+  set(one_value_args NAME INSTALL_DIR SOURCE_DIR BINARY_DIR)
   set(multi_value_args)
   cmake_parse_arguments(ARG "${options}" "${one_value_args}" "${multi_value_args}" ${ARGN})
 
@@ -58,5 +58,10 @@ function(msbuild_set_external_properties)
   if(DEFINED ARG_SOURCE_DIR) 
     set(${ARG_SOURCE_DIR} "${CMAKE_CURRENT_BINARY_DIR}/${ARG_NAME}" PARENT_SCOPE)
   endif()
+  #Assuming we always use the prefix mode 
+  if(DEFINED ARG_BINARY_DIR)
+    set(${ARG_BINARY_DIR} "${PROJECT_BINARY_DIR}/${ARG_NAME}-prefix/src/${ARG_NAME}-build/" PARENT_SCOPE)
+  endif()
+
 
 endfunction()
