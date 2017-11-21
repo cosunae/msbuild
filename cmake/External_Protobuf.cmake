@@ -63,6 +63,18 @@ function(msbuild_external_package)
   set(install_script "${CMAKE_CURRENT_BINARY_DIR}/protobuf_python_install_script.sh")
   configure_file(${install_script_in} ${install_script} @ONLY)
 
+ 
+  set(_PROTOBUF_INSTALL_DIR_ ${install_dir})
+  include(msbuildGetScriptDir)
+  msbuild_get_script_dir(script_dir)
+
+  set(post_build_input_script ${script_dir}/protobuf-postbuild.cmake.in)
+  set(post_build_output_script ${CMAKE_BINARY_DIR}/msbuild-cmake/cmake/protobuf-postbuild.cmake)
+
+  # Configure the script
+  configure_file(${post_build_input_script} ${post_build_output_script} @ONLY)
+ 
+
   # C++ protobuf
   ExternalProject_Add(protobuf
     DOWNLOAD_DIR ${ARG_DOWNLOAD_DIR}
@@ -71,12 +83,17 @@ function(msbuild_external_package)
     SOURCE_DIR "${source_dir}"
     INSTALL_DIR "${install_dir}"
     CONFIGURE_COMMAND ${CMAKE_COMMAND} -G ${CMAKE_GENERATOR} <SOURCE_DIR>/cmake ${cmake_args}
-    STEP_TARGETS python-build 
+    STEP_TARGETS python-build post-build
   )
   ExternalProject_Add_Step(
     protobuf python-build
     COMMAND ${BASH_EXECUTABLE} ${install_script}
     DEPENDEES build
+  )
+  ExternalProject_Add_Step(
+    protobuf post-build
+    COMMAND ${CMAKE_COMMAND} -P ${post_build_output_script}
+    DEPENDEES install
   )
 
   ExternalProject_Get_Property(protobuf install_dir)
