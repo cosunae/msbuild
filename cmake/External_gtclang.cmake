@@ -42,6 +42,9 @@ function(msbuild_external_package)
 )
 
   list(APPEND ARG_CMAKE_ARGS "-DMSBUILD_ROOT=${ARG_MSBUILD_ROOT}")
+  # set the install path to bundle project install dir
+  set(ARG_CMAKE_ARGS ${ARG_CMAKE_ARGS} -DCMAKE_INSTALL_PREFIX:PATH=<INSTALL_DIR>)
+
   # C++ protobuf
   if(ARG_GIT_REPOSITORY)
     ExternalProject_Add(gtclang

@@ -44,6 +44,8 @@ function(msbuild_external_package)
 
   list(APPEND ARG_CMAKE_ARGS "-DMSBUILD_ROOT=${ARG_MSBUILD_ROOT}")
 
+  # set the install path to bundle project install dir
+  set(ARG_CMAKE_ARGS ${ARG_CMAKE_ARGS} -DCMAKE_INSTALL_PREFIX:PATH=<INSTALL_DIR>)
   # C++ protobuf
   if(ARG_GIT_REPOSITORY)
     ExternalProject_Add(dawn
@@ -52,13 +54,13 @@ function(msbuild_external_package)
       GIT_TAG ${ARG_GIT_TAG}
       SOURCE_SUBDIR "bundle"
       INSTALL_DIR "${install_dir}"
-      CMAKE_ARGS ${ARG_CMAKE_ARGS} 
+      CMAKE_ARGS ${ARG_CMAKE_ARGS}
     )
   else()
     ExternalProject_Add(dawn
       SOURCE_DIR ${ARG_SOURCE_DIR}
       INSTALL_DIR "${install_dir}"
-      CMAKE_ARGS ${ARG_CMAKE_ARGS}
+      CMAKE_ARGS ${ARG_CMAKE_ARGS} 
     )
   endif()
 
@@ -76,6 +78,6 @@ function(msbuild_external_package)
 
   endif()
   msbuild_check_required_vars(SET_VARS dawn_DIR REQUIRED_VARS ${ARG_REQUIRED_VARS})
-  set(dawn_DIR "${source_dir}/install/cmake" CACHE INTERNAL "")
+  set(dawn_DIR "${install_dir}" CACHE INTERNAL "")
 
 endfunction()
