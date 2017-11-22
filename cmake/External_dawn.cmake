@@ -61,7 +61,6 @@ function(msbuild_external_package)
       CMAKE_ARGS ${ARG_CMAKE_ARGS}
     )
   endif()
-  msbuild_check_required_vars(SET_VARS dawn_DIR REQUIRED_VARS ${ARG_REQUIRED_VARS})
 
   if(DEFINED ARG_FORWARD_VARS)
     set(options)
@@ -76,6 +75,7 @@ function(msbuild_external_package)
     set(${ARGFV_BINARY_DIR} ${binary_dir} PARENT_SCOPE)
 
   endif()
+  msbuild_check_required_vars(SET_VARS dawn_DIR REQUIRED_VARS ${ARG_REQUIRED_VARS})
   set(dawn_DIR "${source_dir}/install/cmake" CACHE INTERNAL "")
 
 endfunction()
