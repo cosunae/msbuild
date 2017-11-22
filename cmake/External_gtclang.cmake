@@ -45,7 +45,7 @@ function(msbuild_external_package)
   # C++ protobuf
   if(ARG_GIT_REPOSITORY)
     ExternalProject_Add(gtclang
-      PREFIX gtclang
+      PREFIX gtclang-prefix
       GIT_REPOSITORY ${ARG_GIT_REPOSITORY}
       GIT_TAG ${ARG_GIT_TAG}
       INSTALL_DIR "${install_dir}"
