@@ -93,7 +93,15 @@ macro(msbuild_find_package)
 
     set(CMAKE_ARGS)
     msbuild_get_cache_variables(CMAKE_ARGS)
-    msbuild_external_package("REQUIRED_VARS" ${ARG_REQUIRED_VARS} "FORWARD_VARS" ${ARG_FORWARD_VARS} "CMAKE_ARGS" ${CMAKE_ARGS} ${ARG_ADDITIONAL})
+    set(forward_params "CMAKE_ARGS" ${CMAKE_ARGS} ${ARG_ADDITIONAL})
+    if(ARG_FORWARD_VARS) 
+      set(forward_params ${forward_params} "FORWARD_VARS" ${ARG_FORWARD_VARS})
+    endif()
+    if(ARG_REQUIRED_VARS) 
+      set(forward_params ${forward_params} "REQUIRED_VARS" ${ARG_REQUIRED_VARS})
+    endif()
+    
+    msbuild_external_package(${forward_params})
     # we check that all required vars are properly set and forwarded here
     msbuild_check_vars_are_defined(ARG_REQUIRED_VARS)
   else()
@@ -154,7 +162,15 @@ macro(msbuild_find_package)
       set(CMAKE_ARGS)
       msbuild_get_cache_variables(CMAKE_ARGS)
       include(${external_file})
-      msbuild_external_package("REQUIRED_VARS" ${ARG_REQUIRED_VARS} "FORWARD_VARS" ${ARG_FORWARD_VARS} "CMAKE_ARGS" ${CMAKE_ARGS} ${ARG_ADDITIONAL})
+      set(forward_params "CMAKE_ARGS" ${CMAKE_ARGS} ${ARG_ADDITIONAL})
+      if(ARG_FORWARD_VARS)
+        set(forward_params ${forward_params} "FORWARD_VARS" ${ARG_FORWARD_VARS})
+      endif()
+      if(ARG_REQUIRED_VARS)
+        set(forward_params ${forward_params} "REQUIRED_VARS" ${ARG_REQUIRED_VARS})
+      endif()
+
+      msbuild_external_package(${forward_params})
       # we check that all required vars are properly set and forwarded here
       msbuild_check_vars_are_defined(ARG_REQUIRED_VARS)
 
