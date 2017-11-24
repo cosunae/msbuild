@@ -78,6 +78,6 @@ function(msbuild_external_package)
 
   endif()
 
-  set(gtclang_DIR "${install_dir}/gtclang" CACHE INTERNAL "")
+  set(gtclang_DIR "${binary_dir}/prefix/gtclang/cmake" CACHE INTERNAL "")
 
 endfunction()
