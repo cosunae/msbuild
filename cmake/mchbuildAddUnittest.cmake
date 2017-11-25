@@ -18,13 +18,13 @@
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-include(msbuildIncludeGuard)
-msbuild_include_guard()
+include(mchbuildIncludeGuard)
+mchbuild_include_guard()
 
-include(msbuildAddExecutable)
+include(mchbuildAddExecutable)
 
 #.rst:
-# msbuild_add_unittest
+# mchbuild_add_unittest
 # ----------------------------
 #
 # Compile the given objects into a runnable unittest executable (.exe) and register it within CTest.
@@ -33,7 +33,7 @@ include(msbuildAddExecutable)
 #
 # .. code-block:: cmake
 #
-#   msbuild_add_unittest(NAME SOURCES DEPENDS [OUTPUT_DIR GTEST_ARGS])
+#   mchbuild_add_unittest(NAME SOURCES DEPENDS [OUTPUT_DIR GTEST_ARGS])
 #
 # ``NAME``
 #   Name of the unittest exectuable as well as the CMake target to build it.
@@ -46,16 +46,16 @@ include(msbuildAddExecutable)
 # ``GTEST_ARGS`` [optional]
 #   Arguments passed to the created GTest exectuable (e.g ``--gtest_color=yes``)
 #
-function(msbuild_add_unittest)
+function(mchbuild_add_unittest)
   set(one_value_args NAME OUTPUT_DIR)
   set(multi_value_args SOURCES DEPENDS GTEST_ARGS)
   cmake_parse_arguments(ARG "${options}" "${one_value_args}" "${multi_value_args}" ${ARGN})
 
   if(NOT("${ARG_UNPARSED_ARGUMENTS}" STREQUAL ""))
-    message(FATAL_ERROR "msbuild_add_unittest: invalid argument ${ARG_UNPARSED_ARGUMENTS}")
+    message(FATAL_ERROR "mchbuild_add_unittest: invalid argument ${ARG_UNPARSED_ARGUMENTS}")
   endif()
 
-  msbuild_add_executable(
+  mchbuild_add_executable(
     NAME ${ARG_NAME} 
     SOURCES ${ARG_SOURCES} 
     DEPENDS ${ARG_DEPENDS}

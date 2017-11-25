@@ -20,7 +20,7 @@
 
 include(CMakeParseArguments)
 
-# msbuild_set_external_properties
+# mchbuild_set_external_properties
 # ------------------------
 #
 # Try to find the package <PACKAGE>. If the package cannot be found via find_package, the 
@@ -35,7 +35,7 @@ include(CMakeParseArguments)
 #                               find_package).
 #    PACKAGE_ARGS:LIST=<>     - Arguments passed to find_package.
 #    FORWARD_VARS:LIST=<>     - List of variables which are appended (if defined) to the 
-#                               MSBUILD_THIRDPARTY_CMAKE_ARGS. This are usually the variables 
+#                               MCHBUILD_THIRDPARTY_CMAKE_ARGS. This are usually the variables 
 #                               which have an effect on the find_package call. For example, we may 
 #                               want to forward BOOST_ROOT if it was supplied by the user. 
 #    REQUIRED_VARS:LIST=<>    - Variables which need to be TRUE to consider the package as 
@@ -46,7 +46,7 @@ include(CMakeParseArguments)
 #    BUILD_VERSION:STRING=<>  - Version of the package which is built (if required)
 #    DEPENDS:LIST=<>          - Dependencies of this package.
 #
-function(msbuild_set_external_properties)
+function(mchbuild_set_external_properties)
   set(options)
   set(one_value_args NAME INSTALL_DIR SOURCE_DIR BINARY_DIR)
   set(multi_value_args)

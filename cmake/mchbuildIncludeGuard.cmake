@@ -19,19 +19,19 @@
 ##===------------------------------------------------------------------------------------------===##
 
 #.rst:
-# msbuild_include_guard
+# mchbuild_include_guard
 # ----------------------
 #
 # Prevent frequently-included CMake files from being re-parsed multiple times.
 #
 # .. code-block:: cmake
 #
-#   msbuild_include_guard()
+#   mchbuild_include_guard()
 #
-macro(msbuild_include_guard)
-  if(DEFINED "__MSBUILD_INCLUDE_GUARD_${CMAKE_CURRENT_LIST_FILE}")
+macro(mchbuild_include_guard)
+  if(DEFINED "__MCHBUILD_INCLUDE_GUARD_${CMAKE_CURRENT_LIST_FILE}")
     return()
-  endif(DEFINED "__MSBUILD_INCLUDE_GUARD_${CMAKE_CURRENT_LIST_FILE}")
+  endif(DEFINED "__MCHBUILD_INCLUDE_GUARD_${CMAKE_CURRENT_LIST_FILE}")
 
-  set("__MSBUILD_INCLUDE_GUARD_${CMAKE_CURRENT_LIST_FILE}" 1)
+  set("__MCHBUILD_INCLUDE_GUARD_${CMAKE_CURRENT_LIST_FILE}" 1)
 endmacro()

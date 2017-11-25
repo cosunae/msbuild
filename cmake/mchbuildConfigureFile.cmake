@@ -18,11 +18,11 @@
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-include(msbuildIncludeGuard)
-msbuild_include_guard()
+include(mchbuildIncludeGuard)
+mchbuild_include_guard()
 
 #.rst:
-# msbuild_configure_file
+# mchbuild_configure_file
 # ----------------------------------
 #
 # Configure a file and store the output in the same directory hirarchy as the input file while 
@@ -32,7 +32,7 @@ msbuild_include_guard()
 #
 # .. code-block:: cmake
 #
-#   msbuild_configure_file(FILE)
+#   mchbuild_configure_file(FILE)
 #
 # ``FILE``
 #   File to configure.
@@ -42,13 +42,13 @@ msbuild_include_guard()
 # 
 # .. code-block:: cmake
 #
-#   msbuild_configure_file(${CMAKE_SOURCE_DIR}/src/msbuild/Config.h.cmake)
+#   mchbuild_configure_file(${CMAKE_SOURCE_DIR}/src/mchbuild/Config.h.cmake)
 #
-# Ths stores the configured file in ``${CMAKE_BINARY_DIR}/src/msbuild/Config.h`` and, in addition, it 
-# will install it in ``${CMAKE_INSTALL_PREFIX}/include/msbuild/Config.h``" (hence it will strip 
+# Ths stores the configured file in ``${CMAKE_BINARY_DIR}/src/mchbuild/Config.h`` and, in addition, it 
+# will install it in ``${CMAKE_INSTALL_PREFIX}/include/mchbuild/Config.h``" (hence it will strip 
 # ``"src/"``).
 #
-function(msbuild_configure_file FILE)
+function(mchbuild_configure_file FILE)
   get_filename_component(absolute_path ${FILE} ABSOLUTE)
   file(RELATIVE_PATH relative_path ${CMAKE_SOURCE_DIR} ${absolute_path})
 

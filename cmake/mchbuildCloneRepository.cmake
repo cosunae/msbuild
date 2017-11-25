@@ -19,13 +19,13 @@
 ##===------------------------------------------------------------------------------------------===##
 
 include(CMakeParseArguments)
-include(msbuildRequireArg)
-include(msbuildIncludeGuard)
+include(mchbuildRequireArg)
+include(mchbuildIncludeGuard)
 
-msbuild_include_guard()
+mchbuild_include_guard()
 
 #.rst:
-# msbuild_clone_repository
+# mchbuild_clone_repository
 # ----------------------------
 #
 # It clones the repository in the `${PROJECT_SOURCE_DIR}`
@@ -33,7 +33,7 @@ msbuild_include_guard()
 # 
 # .. code-block:: cmake
 # 
-#   msbuild_clone_repository(NAME URL BRANCH SOURCE_DIR)
+#   mchbuild_clone_repository(NAME URL BRANCH SOURCE_DIR)
 #
 # * Input arguments:
 # 
@@ -46,15 +46,15 @@ msbuild_include_guard()
 #  ``SOURCE_DIR:STRING``
 #    Root source directory where the package will be cloned
 #
-function(msbuild_clone_repository)
+function(mchbuild_clone_repository)
   set(options)
   set(one_value_args NAME URL BRANCH SOURCE_DIR)
   set(multi_value_args)
   cmake_parse_arguments(ARG "${options}" "${one_value_args}" "${multi_value_args}" ${ARGN})
 
-  msbuild_require_arg("ARG_UNPARSE_ARGUMENTS" ${ARG_UNPARSE_ARGUMENTS})
-  msbuild_require_arg("ARG_NAME" ${ARG_NAME})
-  msbuild_require_arg("ARG_SOURCE_DIR" ${ARG_SOURCE_DIR})
+  mchbuild_require_arg("ARG_UNPARSE_ARGUMENTS" ${ARG_UNPARSE_ARGUMENTS})
+  mchbuild_require_arg("ARG_NAME" ${ARG_NAME})
+  mchbuild_require_arg("ARG_SOURCE_DIR" ${ARG_SOURCE_DIR})
 
   string(TOUPPER ${ARG_NAME} upper_name)
   set(source_dir "${CMAKE_SOURCE_DIR}/${ARG_NAME}")

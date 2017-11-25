@@ -18,13 +18,13 @@
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-include(msbuildIncludeGuard)
-msbuild_include_guard()
+include(mchbuildIncludeGuard)
+mchbuild_include_guard()
 
 include(CMakeParseArguments)
 
 #.rst:
-# msbuild_add_custom_dummy_target
+# mchbuild_add_custom_dummy_target
 # --------------------------------
 #
 # Creates a dummy target with list of C++ files contained in the list of provided directories.
@@ -33,7 +33,7 @@ include(CMakeParseArguments)
 # 
 # .. code-block:: cmake
 #
-#   msbuild_add_custom_dummy_target(NAME DIRECTORIES)
+#   mchbuild_add_custom_dummy_target(NAME DIRECTORIES)
 #
 # * Input arguments:
 #
@@ -42,7 +42,7 @@ include(CMakeParseArguments)
 #  ``DIRECTORIES:STRING``
 #    List of directories that contain the source files
 #
-function(msbuild_add_custom_dummy_target)
+function(mchbuild_add_custom_dummy_target)
   # Parse arguments
   set(options)
   set(one_value_args NAME)

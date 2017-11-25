@@ -18,16 +18,16 @@
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-# msbuild_make_package_info
+# mchbuild_make_package_info
 # -----------------------------
 #
-# Append a package info string to the global variable MSBUILD_PACKAGE_INFO for PACKAGE.
+# Append a package info string to the global variable MCHBUILD_PACKAGE_INFO for PACKAGE.
 #
 #    PACKAGE_NAME:STRING=<>      - Name of the package
 #    PACKAGE_VERSION:STRING=<>   - Version of the package
 #    USE_SYSTEM:BOOL=<>          - Do we use the system version of the package?
 #
-macro(msbuild_make_package_info PACKAGE_NAME PACKAGE_VERSION USE_SYSTEM)
+macro(mchbuild_make_package_info PACKAGE_NAME PACKAGE_VERSION USE_SYSTEM)
   string(LENGTH ${PACKAGE_NAME} package_name_length)
   math(EXPR indent_length "20 - ${package_name_length}")
 
@@ -40,10 +40,10 @@ macro(msbuild_make_package_info PACKAGE_NAME PACKAGE_VERSION USE_SYSTEM)
   endif()
 
   if(${USE_SYSTEM})
-    set(MSBUILD_PACKAGE_INFO 
-      "${PACKAGE_NAME}${indent}: found    ${version_str};${MSBUILD_PACKAGE_INFO}")
+    set(MCHBUILD_PACKAGE_INFO 
+      "${PACKAGE_NAME}${indent}: found    ${version_str};${MCHBUILD_PACKAGE_INFO}")
   else()
-    set(MSBUILD_PACKAGE_INFO 
-      "${MSBUILD_PACKAGE_INFO};${PACKAGE_NAME}${indent}: building ${version_str}")
+    set(MCHBUILD_PACKAGE_INFO 
+      "${MCHBUILD_PACKAGE_INFO};${PACKAGE_NAME}${indent}: building ${version_str}")
   endif()
 endmacro()

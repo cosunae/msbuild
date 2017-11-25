@@ -18,11 +18,11 @@
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-include(msbuildIncludeGuard)
-msbuild_include_guard()
+include(mchbuildIncludeGuard)
+mchbuild_include_guard()
 
 #.rst:
-# msbuild_require_arg
+# mchbuild_require_arg
 # ----------------------
 #
 # It errors if the argument passed is not defined.
@@ -31,13 +31,13 @@ msbuild_include_guard()
 #
 # .. code-block:: cmake
 #
-#   msbuild_require_arg(ARG)
+#   mchbuild_require_arg(ARG)
 #
 # ``ARG``
 #  - argument that is required
 #
 
-function(msbuild_require_arg ARG)
+function(mchbuild_require_arg ARG)
   if(ARGN STREQUAL "")
     message(FATAL_ERROR "missing required argument ${ARG}")
   endif()

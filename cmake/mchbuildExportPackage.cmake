@@ -18,15 +18,15 @@
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-include(msbuildIncludeGuard)
-msbuild_include_guard()
+include(mchbuildIncludeGuard)
+mchbuild_include_guard()
 
 include(CMakeParseArguments)
 
 #.rst:
-# .. _msbuild_export_package:
+# .. _mchbuild_export_package:
 #
-# msbuild_export_package
+# mchbuild_export_package
 # ---------------------------
 #
 # Export a package by defining variable for its libraries, include directories, definition and 
@@ -34,7 +34,7 @@ include(CMakeParseArguments)
 #
 # .. code-block:: cmake
 #
-#   msbuild_export_package(NAME FOUND [LIBRARIES] [INCLUDE_DIRS] 
+#   mchbuild_export_package(NAME FOUND [LIBRARIES] [INCLUDE_DIRS] 
 #                          [DEFINITIONS] [VERSION] [EXECUTABLE])
 #
 # ``NAME``
@@ -54,22 +54,22 @@ include(CMakeParseArguments)
 #
 # The following variables are defined:
 #
-# ``MSBUILD_<NAME>_FOUND``
+# ``MCHBUILD_<NAME>_FOUND``
 #   True if package was found.
-# ``MSBUILD_<NAME>_LIBRARIES``
+# ``MCHBUILD_<NAME>_LIBRARIES``
 #   Libraries of the package to link against.
-# ``MSBUILD_<NAME>_INCLUDE_DIRS``
+# ``MCHBUILD_<NAME>_INCLUDE_DIRS``
 #   Include directories required by this package.
-# ``MSBUILD_<NAME>_DEFINITIONS``
+# ``MCHBUILD_<NAME>_DEFINITIONS``
 #   Definitions required by the package.
-# ``MSBUILD_<NAME>EXECUTABLE``
+# ``MCHBUILD_<NAME>EXECUTABLE``
 #   Executable of the package.
-# ``MSBUILD_<NAME>_VERSION``
+# ``MCHBUILD_<NAME>_VERSION``
 #   Version string of the package.
 #
-# To create a formatted string of the exported packages :ref:`msbuild_create_package_string`.
+# To create a formatted string of the exported packages :ref:`mchbuild_create_package_string`.
 #
-function(msbuild_export_package)
+function(mchbuild_export_package)
   set(options)
   set(one_value_args NAME FOUND VERSION EXECUTABLE)
   set(multi_value_args LIBRARIES INCLUDE_DIRS DEFINITIONS)
@@ -80,45 +80,45 @@ function(msbuild_export_package)
   endif()
 
   if(NOT(DEFINED ARG_NAME))
-    message(FATAL_ERROR "msbuild_export_package: NAME variable required")
+    message(FATAL_ERROR "mchbuild_export_package: NAME variable required")
   endif()
 
   if(NOT(DEFINED ARG_FOUND))
-    message(FATAL_ERROR "msbuild_export_package: FOUND variable required")
+    message(FATAL_ERROR "mchbuild_export_package: FOUND variable required")
   endif()
 
   string(TOUPPER ${ARG_NAME} package)
 
-  set("MSBUILD_${package}_FOUND" ${ARG_FOUND} CACHE BOOL "${ARG_PACKAGE} found" FORCE)
-  mark_as_advanced("MSBUILD_${package}_FOUND")
+  set("MCHBUILD_${package}_FOUND" ${ARG_FOUND} CACHE BOOL "${ARG_PACKAGE} found" FORCE)
+  mark_as_advanced("MCHBUILD_${package}_FOUND")
 
   if(DEFINED ARG_LIBRARIES)  
-    set("MSBUILD_${package}_LIBRARIES" ${ARG_LIBRARIES} CACHE 
+    set("MCHBUILD_${package}_LIBRARIES" ${ARG_LIBRARIES} CACHE 
         STRING "Libraries of package: ${ARG_PACKAGE}" FORCE)
-    mark_as_advanced("MSBUILD_${package}_LIBRARIES")
+    mark_as_advanced("MCHBUILD_${package}_LIBRARIES")
   endif()
 
   if(DEFINED ARG_INCLUDE_DIRS)  
-    set("MSBUILD_${package}_INCLUDE_DIRS" ${ARG_INCLUDE_DIRS} CACHE 
+    set("MCHBUILD_${package}_INCLUDE_DIRS" ${ARG_INCLUDE_DIRS} CACHE 
         STRING "Include directories of package: ${ARG_PACKAGE}" FORCE)
-    mark_as_advanced("MSBUILD_${package}_INCLUDE_DIRS")
+    mark_as_advanced("MCHBUILD_${package}_INCLUDE_DIRS")
   endif()
 
   if(DEFINED ARG_DEFINITIONS)
-    set("MSBUILD_${package}_DEFINITIONS" ${ARG_DEFINITIONS} CACHE 
+    set("MCHBUILD_${package}_DEFINITIONS" ${ARG_DEFINITIONS} CACHE 
         STRING "Definitions of package: ${ARG_PACKAGE}" FORCE)
-    mark_as_advanced("MSBUILD_${package}_DEFINITIONS")
+    mark_as_advanced("MCHBUILD_${package}_DEFINITIONS")
   endif()
 
   if(DEFINED ARG_EXECUTABLE)
-    set("MSBUILD_${package}_EXECUTABLE" ${ARG_EXECUTABLE} CACHE 
+    set("MCHBUILD_${package}_EXECUTABLE" ${ARG_EXECUTABLE} CACHE 
         STRING "Exectuable of package: ${ARG_PACKAGE}" FORCE)
-    mark_as_advanced("MSBUILD_${package}_EXECUTABLE")
+    mark_as_advanced("MCHBUILD_${package}_EXECUTABLE")
   endif()
 
   if(DEFINED ARG_VERSION)
-    set("MSBUILD_${package}_VERSION" ${ARG_VERSION} CACHE 
+    set("MCHBUILD_${package}_VERSION" ${ARG_VERSION} CACHE 
         STRING "Version of package: ${ARG_PACKAGE}" FORCE)
-    mark_as_advanced("MSBUILD_${package}_VERSION")
+    mark_as_advanced("MCHBUILD_${package}_VERSION")
   endif()
 endfunction()

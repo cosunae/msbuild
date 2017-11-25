@@ -18,16 +18,16 @@
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-list(APPEND CMAKE_MODULE_PATH "@GTCLANG_MSBUILD_SOURCE_DIR@/cmake")
+list(APPEND CMAKE_MODULE_PATH "@GTCLANG_MCHBUILD_SOURCE_DIR@/cmake")
 
-include(msbuildGenerateCMakeScript)
+include(mchbuildGenerateCMakeScript)
 
 set(cmake_generated ${CMAKE_BINARY_DIR}/CMakeCache.txt
                     ${CMAKE_BINARY_DIR}/Makefile
                     ${CMAKE_BINARY_DIR}/CTestTestfile.cmake
                     ${CMAKE_BINARY_DIR}/cmake_install.cmake
                     ${CMAKE_BINARY_DIR}/CMakeFiles
-                    @msbuild_add_target_clean_all_extra_args@
+                    @mchbuild_add_target_clean_all_extra_args@
 )
 
 foreach(file ${cmake_generated})
@@ -37,5 +37,5 @@ foreach(file ${cmake_generated})
   endif()
 endforeach(file)
 
-msbuild_generate_cmake_script(@CMAKE_SOURCE_DIR@ @CMAKE_BINARY_DIR@)
+mchbuild_generate_cmake_script(@CMAKE_SOURCE_DIR@ @CMAKE_BINARY_DIR@)
 

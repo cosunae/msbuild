@@ -18,11 +18,11 @@
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-include(msbuildIncludeGuard)
-msbuild_include_guard()
+include(mchbuildIncludeGuard)
+mchbuild_include_guard()
 
 #.rst:
-# msbuild_export_options
+# mchbuild_export_options
 # -------------------
 #
 # Export a list of options in the variable ``<NAME>_OPTIONS`` which can be accessed by meta
@@ -30,14 +30,14 @@ msbuild_include_guard()
 # 
 # .. code-block:: cmake
 #
-#   msbuild_export_options(NAME ARGN)
+#   mchbuild_export_options(NAME ARGN)
 #
 # ``NAME``
 #   Prefix of the options list.
 # ``ARGN``
 #   List of option names to export.
 #
-macro(msbuild_export_options NAME)
+macro(mchbuild_export_options NAME)
   set("${NAME}_OPTIONS" "" CACHE INTERNAL "Options of ${NAME}" FORCE)
   foreach(arg ${ARGN})
     list(APPEND "${NAME}_OPTIONS" "${arg}")

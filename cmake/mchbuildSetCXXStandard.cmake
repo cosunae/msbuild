@@ -18,26 +18,26 @@
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-include(msbuildIncludeGuard)
-msbuild_include_guard()
+include(mchbuildIncludeGuard)
+mchbuild_include_guard()
 
-include(msbuildCheckAndSetCXXFlag)
+include(mchbuildCheckAndSetCXXFlag)
 
 #.rst:
-# msbuild_set_cxx_standard
+# mchbuild_set_cxx_standard
 # ------------------------------------
 #
 # Set the minimum standard of C++.
 #
 # .. code-block:: cmake
 #
-#   msbuild_set_cxx_standard(MIN_CXX_STANDARD)
+#   mchbuild_set_cxx_standard(MIN_CXX_STANDARD)
 #
 # ``MIN_CXX_STANDARD``
 #   Minimum C++ standard which needs to be supported, one of 
 #   [``c++11``, ``c++14``, ``c++1z``, ``c++17``, ``c++2a``].
 #
-macro(msbuild_set_cxx_standard MIN_CXX_STANDARD)
+macro(mchbuild_set_cxx_standard MIN_CXX_STANDARD)
   set(supported_standards "c++11" "c++14" "c++1z" "c++17" "c++2a")    
   
   if(NOT("${MIN_CXX_STANDARD}" IN_LIST supported_standards))
@@ -58,7 +58,7 @@ macro(msbuild_set_cxx_standard MIN_CXX_STANDARD)
     
   string(TOUPPER ${std_cxx} STD_CXX)
   string(REPLACE "+" "X" STD_CXX ${STD_CXX})
-  msbuild_check_and_set_cxx_flag("${cxx_flag}" HAVE_${STD_CXX}_STANDARD_SUPPORT)
+  mchbuild_check_and_set_cxx_flag("${cxx_flag}" HAVE_${STD_CXX}_STANDARD_SUPPORT)
   
   if(NOT(HAVE_${STD_CXX}_STANDARD_SUPPORT))
     message(FATAL_ERROR "The compiler ${CMAKE_CXX_COMPILER} has no ${MIN_CXX_STANDARD} support.")

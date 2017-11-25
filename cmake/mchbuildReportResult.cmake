@@ -18,25 +18,25 @@
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-include(msbuildIncludeGuard)
-msbuild_include_guard()
+include(mchbuildIncludeGuard)
+mchbuild_include_guard()
 
 #.rst:
-# msbuild_report_result
+# mchbuild_report_result
 # ---------------------------------
 #
 # Report a list of strings, encompassed by a box.
 #
 # .. code-block:: cmake
 #
-#   msbuild_report_result(HEADER [ARGN...])
+#   mchbuild_report_result(HEADER [ARGN...])
 #
 # ``HEADER``
 #   Header to print
 # ``ARGN``
 #   List of strings to report
 #
-function(msbuild_report_result HEADER)
+function(mchbuild_report_result HEADER)
   string(LENGTH ${HEADER} header_length)
   set(full_header "----------------------------------------------------------------")
   math(EXPR right_header_length "43 - ${header_length}")

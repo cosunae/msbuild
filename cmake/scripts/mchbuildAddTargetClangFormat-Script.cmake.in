@@ -23,11 +23,11 @@ set(dirs "@CLANG-FORMAT_DIRECTORIES@")
 set(extensions "@CLANG-FORMAT_EXTENSION@")
 
 if(NOT(executable))
-  message(FATAL_ERROR "msbuild_add_target_clang_format: clang-format executable not found!")
+  message(FATAL_ERROR "mchbuild_add_target_clang_format: clang-format executable not found!")
 endif()
 
 if(NOT(extensions))
-   message(FATAL_ERROR "msbuild_add_target_clang_format: invalid extension \"${extensions}\"")
+   message(FATAL_ERROR "mchbuild_add_target_clang_format: invalid extension \"${extensions}\"")
 endif()
 
 # Glob the files

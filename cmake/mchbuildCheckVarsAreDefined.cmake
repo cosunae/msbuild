@@ -18,11 +18,11 @@
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-include(msbuildIncludeGuard)
-msbuild_include_guard()
+include(mchbuildIncludeGuard)
+mchbuild_include_guard()
 
 #.rst:
-# msbuild_check_vars_are_defined
+# mchbuild_check_vars_are_defined
 # -------------------------------
 #
 # It checks that all the variables within the argument (list) are defined
@@ -30,14 +30,14 @@ msbuild_include_guard()
 # 
 # .. code-block:: cmake
 #   
-#   msbuild_check_vars_are_defined(VARS)
+#   mchbuild_check_vars_are_defined(VARS)
 #
 # * Input arguments:
 #
 #  ``VARS:list``
 #   list of all variables that should be defined.
 #
-function(msbuild_check_vars_are_defined VARS)
+function(mchbuild_check_vars_are_defined VARS)
 
   foreach(arg ${${VARS}})
     if(NOT( DEFINED ${arg}) )

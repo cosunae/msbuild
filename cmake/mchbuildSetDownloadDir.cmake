@@ -18,30 +18,30 @@
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-# msbuild_set_download_dir
+# mchbuild_set_download_dir
 # ----------------------------
 #
-# This script defines a MSBUILD_DOWNLOAD_DIR variable, if it's not already defined.
+# This script defines a MCHBUILD_DOWNLOAD_DIR variable, if it's not already defined.
 #
-# Cache the downloads in MSBUILD_DOWNLOAD_DIR if it's defined. Otherwise, use the user's typical 
+# Cache the downloads in MCHBUILD_DOWNLOAD_DIR if it's defined. Otherwise, use the user's typical 
 # Downloads directory, if it already exists. Otherwise, use a Downloads subdir in the build tree.
 #
-macro(msbuild_set_download_dir)
-  if(NOT DEFINED MSBUILD_DOWNLOAD_DIR)
+macro(mchbuild_set_download_dir)
+  if(NOT DEFINED MCHBUILD_DOWNLOAD_DIR)
     if(NOT "$ENV{HOME}" STREQUAL "" AND EXISTS "$ENV{HOME}/Downloads")
-      set(MSBUILD_DOWNLOAD_DIR "$ENV{HOME}/Downloads")
+      set(MCHBUILD_DOWNLOAD_DIR "$ENV{HOME}/Downloads")
     elseif(NOT "$ENV{USERPROFILE}" STREQUAL "" AND EXISTS "$ENV{USERPROFILE}/Downloads")
-      set(MSBUILD_DOWNLOAD_DIR "$ENV{USERPROFILE}/Downloads")
+      set(MCHBUILD_DOWNLOAD_DIR "$ENV{USERPROFILE}/Downloads")
     elseif(NOT "${CMAKE_CURRENT_BINARY_DIR}" STREQUAL "")
-      set(MSBUILD_DOWNLOAD_DIR "${CMAKE_CURRENT_BINARY_DIR}/Downloads")
+      set(MCHBUILD_DOWNLOAD_DIR "${CMAKE_CURRENT_BINARY_DIR}/Downloads")
     else()
       message(FATAL_ERROR "unexpectedly empty CMAKE_CURRENT_BINARY_DIR")
     endif()
-    string(REPLACE "\\" "/" MSBUILD_DOWNLOAD_DIR "${MSBUILD_DOWNLOAD_DIR}")
+    string(REPLACE "\\" "/" MCHBUILD_DOWNLOAD_DIR "${MCHBUILD_DOWNLOAD_DIR}")
   endif()
 
-  file(MAKE_DIRECTORY "${MSBUILD_DOWNLOAD_DIR}")
-  if(NOT EXISTS "${MSBUILD_DOWNLOAD_DIR}")
+  file(MAKE_DIRECTORY "${MCHBUILD_DOWNLOAD_DIR}")
+  if(NOT EXISTS "${MCHBUILD_DOWNLOAD_DIR}")
     message(FATAL_ERROR "could not find or make download directory")
   endif()
 endmacro()

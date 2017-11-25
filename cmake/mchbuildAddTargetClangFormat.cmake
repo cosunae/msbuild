@@ -18,14 +18,14 @@
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-include(msbuildIncludeGuard)
-msbuild_include_guard()
+include(mchbuildIncludeGuard)
+mchbuild_include_guard()
 
-include(msbuildGetScriptDir)
+include(mchbuildGetScriptDir)
 include(CMakeParseArguments)
 
 #.rst:
-# msbuild_add_target_clang_format
+# mchbuild_add_target_clang_format
 # ----------------------------------------
 #
 # Provide a ``format`` target which runs clang-format_ recursively on all files in the provided 
@@ -33,7 +33,7 @@ include(CMakeParseArguments)
 #
 # .. code-block:: cmake
 #
-#  msbuild_add_target_clang_format(DIRECTORIES PATTERN)
+#  mchbuild_add_target_clang_format(DIRECTORIES PATTERN)
 #
 # ``DIRECTORIES``
 #   Directories to recursively traverse to find all files with extensions matching ``EXTENSION``.
@@ -42,30 +42,30 @@ include(CMakeParseArguments)
 #
 # .. _clang-format: https://clang.llvm.org/docs/ClangFormat.html
 #
-function(msbuild_add_target_clang_format)
+function(mchbuild_add_target_clang_format)
   set(options)
   set(one_value_args)
   set(multi_value_args DIRECTORIES EXTENSION)
   cmake_parse_arguments(ARG "${options}" "${one_value_args}" "${multi_value_args}" ${ARGN})
   
   if(NOT("${ARG_UNPARSED_ARGUMENTS}" STREQUAL ""))
-    message(FATAL_ERROR "msbuild_add_target_clang_format: invalid argument ${ARG_UNPARSED_ARGUMENTS}")
+    message(FATAL_ERROR "mchbuild_add_target_clang_format: invalid argument ${ARG_UNPARSED_ARGUMENTS}")
   endif()
 
   if(NOT(CLANG-FORMAT_EXECUTABLE))
     return()
   endif()
 
-  msbuild_get_script_dir(script_dir)
+  mchbuild_get_script_dir(script_dir)
 
   # Set configure arguments
   set(CLANG-FORMAT_DIRECTORIES ${ARG_DIRECTORIES})
   set(CLANG-FORMAT_EXTENSION ${ARG_EXTENSION})
 
   set(input_script 
-      ${script_dir}/msbuildAddTargetClangFormat-Script.cmake.in)
+      ${script_dir}/mchbuildAddTargetClangFormat-Script.cmake.in)
   set(output_script 
-      ${CMAKE_BINARY_DIR}/msbuild-cmake/cmake/msbuildAddTargetClangFormat-Script-Format.cmake)
+      ${CMAKE_BINARY_DIR}/mchbuild-cmake/cmake/mchbuildAddTargetClangFormat-Script-Format.cmake)
   
   configure_file(${input_script} ${output_script} @ONLY)
   

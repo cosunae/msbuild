@@ -18,23 +18,23 @@
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-include(msbuildIncludeGuard)
-msbuild_include_guard()
+include(mchbuildIncludeGuard)
+mchbuild_include_guard()
 
-include(msbuildMakeStringPair)
+include(mchbuildMakeStringPair)
 
 #.rst:
-# .. _msbuild_create_package_string:
+# .. _mchbuild_create_package_string:
 #
-# msbuild_create_package_string
+# mchbuild_create_package_string
 # ---------------------------------------
 #
 # Create a package string including the location of the library/include directory and version 
-# string. Note that the package has to be exported via :ref:`msbuild_export_package`.
+# string. Note that the package has to be exported via :ref:`mchbuild_export_package`.
 #
 # .. code-block:: cmake
 #
-#   msbuild_create_package_string(NAME PACKAGE_STRING [NOT_FOUND_STRING])
+#   mchbuild_create_package_string(NAME PACKAGE_STRING [NOT_FOUND_STRING])
 #
 # ``NAME``
 #   Name of the package.
@@ -47,35 +47,35 @@ include(msbuildMakeStringPair)
 # ^^^^^^^
 # .. code-block:: cmake
 #
-#   msbuild_export_package(Foo FOUND TRUE LIBRARIES "/usr/lib/libfoo.so" VERSION "1.2.3")
-#   msbuild_create_package_string(Foo FooPackageStr)
+#   mchbuild_export_package(Foo FOUND TRUE LIBRARIES "/usr/lib/libfoo.so" VERSION "1.2.3")
+#   mchbuild_create_package_string(Foo FooPackageStr)
 #   message(${FooPackageStr})
 #
-function(msbuild_create_package_string NAME PACKAGE_STRING)
+function(mchbuild_create_package_string NAME PACKAGE_STRING)
   set(not_found_string "NOT found")
   if(NOT("${ARGV2}" STREQUAL ""))
     set(not_found_string "${ARGV2}")
   endif()
 
   string(TOUPPER ${NAME} package)
-  if(NOT(DEFINED MSBUILD_${package}_FOUND) OR NOT(${MSBUILD_${package}_FOUND}))
+  if(NOT(DEFINED MCHBUILD_${package}_FOUND) OR NOT(${MCHBUILD_${package}_FOUND}))
      set(info "${not_found_string}")
   else()
-    if(DEFINED MSBUILD_${package}_INCLUDE_DIRS)
-      list(GET  MSBUILD_${package}_INCLUDE_DIRS 0 inc)
+    if(DEFINED MCHBUILD_${package}_INCLUDE_DIRS)
+      list(GET  MCHBUILD_${package}_INCLUDE_DIRS 0 inc)
       set(info "${inc}")
-    elseif(DEFINED MSBUILD_${package}_EXECUTABLE)
-      list(GET MSBUILD_${package}_EXECUTABLE 0 exe)
+    elseif(DEFINED MCHBUILD_${package}_EXECUTABLE)
+      list(GET MCHBUILD_${package}_EXECUTABLE 0 exe)
       set(info "${exe}")
     else()
       set(info "found")
     endif()
 
-    if(DEFINED MSBUILD_${package}_VERSION)
-      set(info "${info} (ver ${MSBUILD_${package}_VERSION})")
+    if(DEFINED MCHBUILD_${package}_VERSION)
+      set(info "${info} (ver ${MCHBUILD_${package}_VERSION})")
     endif()
   endif()
 
-  msbuild_make_string_pair(${NAME} ${info} 20 out_string)
+  mchbuild_make_string_pair(${NAME} ${info} 20 out_string)
   set(${PACKAGE_STRING} ${out_string} PARENT_SCOPE)
 endfunction()

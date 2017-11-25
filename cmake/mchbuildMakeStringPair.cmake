@@ -18,11 +18,11 @@
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-include(msbuildIncludeGuard)
-msbuild_include_guard()
+include(mchbuildIncludeGuard)
+mchbuild_include_guard()
 
 #.rst:
-# msbuild_make_string_pair
+# mchbuild_make_string_pair
 # -------------------------------------
 #
 # Create a formatted string of the given string pair.
@@ -30,7 +30,7 @@ msbuild_include_guard()
 #
 # .. code-block:: cmake
 #
-#   msbuild_make_string_pair(FIRST SECOND NUM_CHARS OUT_STRING)
+#   mchbuild_make_string_pair(FIRST SECOND NUM_CHARS OUT_STRING)
 #
 # ``FIRST``
 #   First string.
@@ -51,12 +51,12 @@ msbuild_include_guard()
 # ^^^^^^^
 # .. code-block:: cmake
 #
-#   msbuild_make_string_pair(Foo Bar1 10 out_var1)
-#   msbuild_make_string_pair(LongerFoo Bar2 10 out_var2)
+#   mchbuild_make_string_pair(Foo Bar1 10 out_var1)
+#   mchbuild_make_string_pair(LongerFoo Bar2 10 out_var2)
 #   message(${out_var1}) # "Foo       Bar1"
 #   message(${out_var2}) # "LongerFoo Bar2"
 #
-function(msbuild_make_string_pair FIRST SECOND NUM_CHARS OUT_STRING)
+function(mchbuild_make_string_pair FIRST SECOND NUM_CHARS OUT_STRING)
   set(max_length ${NUM_CHARS})
   string(LENGTH ${FIRST} first_name_length)
   math(EXPR indent_length "${max_length} - ${first_name_length}")

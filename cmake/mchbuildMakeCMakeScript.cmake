@@ -18,7 +18,7 @@
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-# msbuild_make_cmake_script
+# mchbuild_make_cmake_script
 # -----------------------------
 #
 # Create bash script for re-invoking CMake in the build directory. 
@@ -27,7 +27,7 @@
 #   BUILD_DIR:PATH=<>    - Directory to install the script
 #   ARGN:LIST=<>        - List of arguments used to invoke CMake
 #
-macro(msbuild_make_cmake_script CMAKE_LISTS_DIR BUILD_DIR)
+macro(mchbuild_make_cmake_script CMAKE_LISTS_DIR BUILD_DIR)
   set(script_args)
 
   foreach(arg ${ARGN})

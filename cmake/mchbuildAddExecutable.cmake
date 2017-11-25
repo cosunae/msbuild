@@ -18,20 +18,20 @@
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-include(msbuildIncludeGuard)
-msbuild_include_guard()
+include(mchbuildIncludeGuard)
+mchbuild_include_guard()
 
 include(CMakeParseArguments)
 
 #.rst:
-# msbuild_add_executable
+# mchbuild_add_executable
 # --------------------------
 #
 # Compile the given objects into a runnable executable (.exe).
 #
 # .. code-block:: cmake
 #
-#   msbuild_add_executable(NAME SOURCES DEPENDS [OUTPUT_DIR])
+#   mchbuild_add_executable(NAME SOURCES DEPENDS [OUTPUT_DIR])
 #
 # ``NAME``
 #   Name of the exectuable as well as the CMake target to build it.
@@ -44,13 +44,13 @@ include(CMakeParseArguments)
 # ``INSTALL_DESTINATION`` [optional]
 #   Destition (relative to ``CMAKE_INSTALL_PREFIX``) to install the executable.
 #
-function(msbuild_add_executable)
+function(mchbuild_add_executable)
   set(one_value_args NAME OUTPUT_DIR INSTALL_DESTINATION)
   set(multi_value_args SOURCES DEPENDS)
   cmake_parse_arguments(ARG "${options}" "${one_value_args}" "${multi_value_args}" ${ARGN})
 
   if(NOT("${ARG_UNPARSED_ARGUMENTS}" STREQUAL ""))
-    message(FATAL_ERROR "msbuild_add_executable: invalid argument ${ARG_UNPARSED_ARGUMENTS}")
+    message(FATAL_ERROR "mchbuild_add_executable: invalid argument ${ARG_UNPARSED_ARGUMENTS}")
   endif()
   
   add_executable(${ARG_NAME} ${ARG_SOURCES})

@@ -18,25 +18,25 @@
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-include(msbuildIncludeGuard)
-msbuild_include_guard()
+include(mchbuildIncludeGuard)
+mchbuild_include_guard()
 
 #.rst:
-# msbuild_enable_full_rpath
+# mchbuild_enable_full_rpath
 # ----------------------
 #
 # Enable full RPATH_ support.
 #
 # .. code-block:: cmake
 #
-#   msbuild_enable_full_rpath(LIB_PREFIX)
+#   mchbuild_enable_full_rpath(LIB_PREFIX)
 #
 # ``LIB_PREFIX``
 #   Install prefix for libraries (e.g `lib`).
 #
 # .. _RPATH: https://cmake.org/Wiki/CMake_RPATH_handling
 #
-macro(msbuild_enable_full_rpath LIB_PREFIX)
+macro(mchbuild_enable_full_rpath LIB_PREFIX)
   # Use, i.e. don't skip the full RPATH for the build tree
   set(CMAKE_SKIP_BUILD_RPATH FALSE)
 

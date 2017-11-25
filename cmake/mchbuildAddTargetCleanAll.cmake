@@ -18,13 +18,13 @@
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-include(msbuildIncludeGuard)
-msbuild_include_guard()
+include(mchbuildIncludeGuard)
+mchbuild_include_guard()
 
-include(msbuildGetScriptDir)
+include(mchbuildGetScriptDir)
 
 #.rst:
-# msbuild_add_target_clean_all
+# mchbuild_add_target_clean_all
 # -------------------------------
 #
 # Provide a ``clean-all`` target which clears the CMake cache and all related CMake files and 
@@ -38,17 +38,17 @@ include(msbuildGetScriptDir)
 #
 # .. code-block:: cmake
 #
-#  msbuild_add_target_clean_all([dirs...])
+#  mchbuild_add_target_clean_all([dirs...])
 #
 # ``dirs``
 #   Addtional files or directories to remove.
 #
-function(msbuild_add_target_clean_all)
-  msbuild_get_script_dir(script_dir)
-  set(msbuild_add_target_clean_all_extra_args ${ARGN})
+function(mchbuild_add_target_clean_all)
+  mchbuild_get_script_dir(script_dir)
+  set(mchbuild_add_target_clean_all_extra_args ${ARGN})
 
-  set(input_script ${script_dir}/msbuildAddTargetCleanAll-Script.cmake.in)
-  set(output_script ${CMAKE_BINARY_DIR}/msbuild-cmake/cmake/msbuildAddTargetCleanAll-Script.cmake)
+  set(input_script ${script_dir}/mchbuildAddTargetCleanAll-Script.cmake.in)
+  set(output_script ${CMAKE_BINARY_DIR}/mchbuild-cmake/cmake/mchbuildAddTargetCleanAll-Script.cmake)
 
   # Configure the script
   configure_file(${input_script} ${output_script} @ONLY)

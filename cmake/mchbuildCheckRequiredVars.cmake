@@ -18,18 +18,18 @@
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-include(msbuildIncludeGuard)
-msbuild_include_guard()
+include(mchbuildIncludeGuard)
+mchbuild_include_guard()
 
 #.rst:
-# msbuild_check_required_vars
+# mchbuild_check_required_vars
 # -------------------------------
 #
 # It checks that the list of `REQUIRED_VARS` is contained within the list of `SET_VARS`
 # 
 # .. code-block:: cmake
 #   
-#   msbuild_check_required_vars(SET_VARS "svars..." REQUIRED_VARS "rvars...")
+#   mchbuild_check_required_vars(SET_VARS "svars..." REQUIRED_VARS "rvars...")
 #
 # * Input arguments:
 #
@@ -38,7 +38,7 @@ msbuild_include_guard()
 #  ``REQUIRED_VARS``
 #   list of variables that should be contained in the list of `SET_VARS`
 #
-function(msbuild_check_required_vars)
+function(mchbuild_check_required_vars)
 
   cmake_policy(SET CMP0057 NEW)
 

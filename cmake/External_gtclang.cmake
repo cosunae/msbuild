@@ -19,19 +19,19 @@
 ##===------------------------------------------------------------------------------------------===##
 
 include(ExternalProject)
-include(msbuildSetExternalProperties)
-include (msbuildRequireOnlyOneOf)
+include(mchbuildSetExternalProperties)
+include (mchbuildRequireOnlyOneOf)
 
 set(DIR_OF_PROTO_EXTERNAL ${CMAKE_CURRENT_LIST_DIR})  
 
-function(msbuild_external_package)
+function(mchbuild_external_package)
   set(options)
-  set(one_value_args URL URL_MD5 DOWNLOAD_DIR SOURCE_DIR GIT_REPOSITORY GIT_TAG MSBUILD_ROOT)
+  set(one_value_args URL URL_MD5 DOWNLOAD_DIR SOURCE_DIR GIT_REPOSITORY GIT_TAG MCHBUILD_ROOT)
   set(multi_value_args REQUIRED_VARS FORWARD_VARS CMAKE_ARGS)
   cmake_parse_arguments(ARG "${options}" "${one_value_args}" "${multi_value_args}" ${ARGN})
 
-  msbuild_require_arg("MSBUILD_ROOT" ${ARG_MSBUILD_ROOT})
-  msbuild_require_only_one_of2(NAME1 "SOURCE_DIR" NAME2 "GIT"
+  mchbuild_require_arg("MCHBUILD_ROOT" ${ARG_MCHBUILD_ROOT})
+  mchbuild_require_only_one_of2(NAME1 "SOURCE_DIR" NAME2 "GIT"
          GROUP1 ${ARG_SOURCE_DIR}
          GROUP2 ${ARG_GIT_REPOSITORY} ${ARG_GIT_TAG})
 
@@ -39,13 +39,13 @@ function(msbuild_external_package)
     message(FATAL_ERROR "invalid argument ${ARG_UNPARSED_ARGUMENTS}")
   endif()
 
-  msbuild_set_external_properties(NAME "gtclang" 
+  mchbuild_set_external_properties(NAME "gtclang" 
     INSTALL_DIR install_dir 
     SOURCE_DIR source_dir
     BINARY_DIR binary_dir
 )
 
-  list(APPEND ARG_CMAKE_ARGS "-DMSBUILD_ROOT=${ARG_MSBUILD_ROOT}")
+  list(APPEND ARG_CMAKE_ARGS "-DMCHBUILD_ROOT=${ARG_MCHBUILD_ROOT}")
   # set the install path to bundle project install dir
   set(ARG_CMAKE_ARGS ${ARG_CMAKE_ARGS} -DCMAKE_INSTALL_PREFIX:PATH=<INSTALL_DIR>)
 
@@ -66,7 +66,7 @@ function(msbuild_external_package)
     )
   endif()
 
-  msbuild_check_required_vars(SET_VARS gtclang_DIR REQUIRED_VARS ${ARG_REQUIRED_VARS})
+  mchbuild_check_required_vars(SET_VARS gtclang_DIR REQUIRED_VARS ${ARG_REQUIRED_VARS})
   ##TODO this is the same for all projects, we need to reuse this code
   if(DEFINED ARG_FORWARD_VARS)
     set(options)

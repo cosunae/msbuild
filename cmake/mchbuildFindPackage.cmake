@@ -19,15 +19,15 @@
 ##===------------------------------------------------------------------------------------------===##
 
 include(CMakeParseArguments)
-include(msbuildMakePackageInfo)
-include(msbuildRequireArg)
-include(msbuildAddOptionalDeps)
-include(msbuildGetCacheVariables)
-include(msbuildCheckVarsAreDefined)
+include(mchbuildMakePackageInfo)
+include(mchbuildRequireArg)
+include(mchbuildAddOptionalDeps)
+include(mchbuildGetCacheVariables)
+include(mchbuildCheckVarsAreDefined)
 
 #.rst:
 #
-# msbuild_find_package
+# mchbuild_find_package
 # ------------------------
 #
 # Try to find the package <PACKAGE>. If the package cannot be found via find_package, the 
@@ -40,7 +40,7 @@ include(msbuildCheckVarsAreDefined)
 #
 # .. code-block:: cmake
 #
-#   msbuild_find_package(PACKAGE "package" PACKAGE_ARGS "package_args" 
+#   mchbuild_find_package(PACKAGE "package" PACKAGE_ARGS "package_args" 
 #           REQUIRED_VARS "required_vars" VERSION_VAR "version_var")
 #
 #
@@ -59,13 +59,13 @@ include(msbuildCheckVarsAreDefined)
 # ``BUILD_VERSION:STRING``
 #   - Version of the package which is built (if required)
 #
-macro(msbuild_find_package)
+macro(mchbuild_find_package)
   set(options)
   set(one_value_args PACKAGE BUILD_VERSION VERSION_VAR)
   set(multi_value_args PACKAGE_ARGS REQUIRED_VARS FORWARD_VARS DEPENDS ADDITIONAL )
   cmake_parse_arguments(ARG "${options}" "${one_value_args}" "${multi_value_args}" ${ARGN})
 
-  msbuild_require_arg("PACKAGE" ${ARG_PACKAGE})
+  mchbuild_require_arg("PACKAGE" ${ARG_PACKAGE})
 
   if(NOT("${ARG_UNPARSED_ARGUMENTS}" STREQUAL ""))
     message(FATAL_ERROR "invalid argument ${ARG_UNPARSED_ARGUMENTS}")
@@ -96,7 +96,7 @@ macro(msbuild_find_package)
     include(${external_file})
 
     set(CMAKE_ARGS)
-    msbuild_get_cache_variables(CMAKE_ARGS)
+    mchbuild_get_cache_variables(CMAKE_ARGS)
     set(forward_params "CMAKE_ARGS" ${CMAKE_ARGS} ${ARG_ADDITIONAL})
     if(ARG_FORWARD_VARS) 
       set(forward_params ${forward_params} "FORWARD_VARS" ${ARG_FORWARD_VARS})
@@ -105,9 +105,9 @@ macro(msbuild_find_package)
       set(forward_params ${forward_params} "REQUIRED_VARS" ${ARG_REQUIRED_VARS})
     endif()
     
-    msbuild_external_package(${forward_params})
+    mchbuild_external_package(${forward_params})
     # we check that all required vars are properly set and forwarded here
-    msbuild_check_vars_are_defined(ARG_REQUIRED_VARS)
+    mchbuild_check_vars_are_defined(ARG_REQUIRED_VARS)
   else()
     set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} ${dawn_DIR})
     # Check if the system has the package
@@ -165,7 +165,7 @@ macro(msbuild_find_package)
     else()
       set(USE_SYSTEM_${package_upper} OFF CACHE BOOL ${doc} FORCE)
       set(CMAKE_ARGS)
-      msbuild_get_cache_variables(CMAKE_ARGS)
+      mchbuild_get_cache_variables(CMAKE_ARGS)
       include(${external_file})
       set(forward_params "CMAKE_ARGS" ${CMAKE_ARGS} ${ARG_ADDITIONAL})
       if(ARG_FORWARD_VARS)
@@ -175,9 +175,9 @@ macro(msbuild_find_package)
         set(forward_params ${forward_params} "REQUIRED_VARS" ${ARG_REQUIRED_VARS})
       endif()
 
-      msbuild_external_package(${forward_params})
+      mchbuild_external_package(${forward_params})
       # we check that all required vars are properly set and forwarded here
-      msbuild_check_vars_are_defined(ARG_REQUIRED_VARS)
+      mchbuild_check_vars_are_defined(ARG_REQUIRED_VARS)
 
     endif()
   endif()
@@ -185,11 +185,11 @@ macro(msbuild_find_package)
   # Set the dependencies if we build
   if(NOT(use_system) AND ARG_DEPENDS)
     set(deps)
-    msbuild_add_optional_deps(deps ${ARG_DEPENDS})
+    mchbuild_add_optional_deps(deps ${ARG_DEPENDS})
     if(deps)
       add_dependencies(${target} ${deps})
     endif()
   endif()
 
-#  msbuild_make_package_info(${ARG_PACKAGE} ${version} ${use_system})
+#  mchbuild_make_package_info(${ARG_PACKAGE} ${version} ${use_system})
 endmacro()

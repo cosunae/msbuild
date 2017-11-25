@@ -19,20 +19,20 @@
 ##===------------------------------------------------------------------------------------------===##
 
 include(ExternalProject)
-include(msbuildSetExternalProperties)
-include (msbuildRequireArg)
+include(mchbuildSetExternalProperties)
+include (mchbuildRequireArg)
 
 set(DIR_OF_PROTO_EXTERNAL ${CMAKE_CURRENT_LIST_DIR})  
 
-function(msbuild_external_package)
+function(mchbuild_external_package)
   set(options)
   set(one_value_args URL URL_MD5 DOWNLOAD_DIR)
   set(multi_value_args REQUIRED_VARS CMAKE_ARGS)
   cmake_parse_arguments(ARG "${options}" "${one_value_args}" "${multi_value_args}" ${ARGN})
 
-  msbuild_require_arg("URL" ${ARG_URL})
-  msbuild_require_arg("DOWNLOAD_DIR" ${ARG_DOWNLOAD_DIR})
-  msbuild_require_arg("URL_MD5" ${ARG_URL_MD5})
+  mchbuild_require_arg("URL" ${ARG_URL})
+  mchbuild_require_arg("DOWNLOAD_DIR" ${ARG_DOWNLOAD_DIR})
+  mchbuild_require_arg("URL_MD5" ${ARG_URL_MD5})
 
   if(NOT("${ARG_UNPARSED_ARGUMENTS}" STREQUAL ""))
     message(FATAL_ERROR "invalid argument ${ARG_UNPARSED_ARGUMENTS}")
@@ -48,7 +48,7 @@ function(msbuild_external_package)
     -Dprotobuf_INSTALL_EXAMPLES=OFF
   )
 
-  msbuild_set_external_properties(NAME "protobuf" 
+  mchbuild_set_external_properties(NAME "protobuf" 
     INSTALL_DIR install_dir 
     SOURCE_DIR source_dir)
 
@@ -69,11 +69,11 @@ function(msbuild_external_package)
 
  
   set(_PROTOBUF_INSTALL_DIR_ ${install_dir})
-  include(msbuildGetScriptDir)
-  msbuild_get_script_dir(script_dir)
+  include(mchbuildGetScriptDir)
+  mchbuild_get_script_dir(script_dir)
 
   set(post_build_input_script ${script_dir}/protobuf-postbuild.cmake.in)
-  set(post_build_output_script ${CMAKE_BINARY_DIR}/msbuild-cmake/cmake/protobuf-postbuild.cmake)
+  set(post_build_output_script ${CMAKE_BINARY_DIR}/mchbuild-cmake/cmake/protobuf-postbuild.cmake)
 
   # Configure the script
   configure_file(${post_build_input_script} ${post_build_output_script} @ONLY)

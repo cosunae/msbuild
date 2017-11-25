@@ -18,11 +18,11 @@
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-include(msbuildIncludeGuard)
-msbuild_include_guard()
+include(mchbuildIncludeGuard)
+mchbuild_include_guard()
 
 #.rst:
-# msbuild_get_cache_variables
+# mchbuild_get_cache_variables
 # ----------------------------
 #
 # It returns, in the output variable, the list of cmake args used to 
@@ -30,14 +30,14 @@ msbuild_include_guard()
 #
 # .. code-block:: cmake
 #
-#   msbuild_get_cache_variables(CMAKE_ARGS)
+#   mchbuild_get_cache_variables(CMAKE_ARGS)
 # 
 # * Output arguments:
 #
 # ``CMAKE_ARGS:LIST``
 #   Variable which will contain the list of cmake arguments
 #
-function(msbuild_get_cache_variables CMAKE_ARGS_)
+function(mchbuild_get_cache_variables CMAKE_ARGS_)
   get_cmake_property(CACHE_VARS CACHE_VARIABLES)
 
   set(CMAKE_ARGS "")

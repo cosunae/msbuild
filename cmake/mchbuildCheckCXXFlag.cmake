@@ -18,26 +18,26 @@
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-include(msbuildIncludeGuard)
-msbuild_include_guard()
+include(mchbuildIncludeGuard)
+mchbuild_include_guard()
 
 include(CheckCXXCompilerFlag)
 
 #.rst:
-# msbuild_check_cxx_flag
+# mchbuild_check_cxx_flag
 # -------------------------------
 #
 # Test if the C++ compiler flag is supported.
 #
 # .. code-block:: cmake
 #
-#   msbuild_check_cxx_flag(FLAG NAME)
+#   mchbuild_check_cxx_flag(FLAG NAME)
 #
 # ``FLAG``
 #   Compiler flag to check (e.g -O3).
 # ``NAME``
 #   Name of the check (e.g HAVE_GCC_O3).
 #
-macro(msbuild_check_cxx_flag FLAG NAME)
+macro(mchbuild_check_cxx_flag FLAG NAME)
   check_cxx_compiler_flag("${FLAG}" ${NAME})
 endmacro()

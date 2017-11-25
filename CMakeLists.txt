@@ -32,19 +32,19 @@ if(NOT CMAKE_INSTALL_PREFIX)
       "Install path prefix, prepended onto install directories." FORCE)
 endif()
 
-project(msbuild NONE)
+project(mchbuild NONE)
 cmake_minimum_required(VERSION 3.3)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 
-include(msbuildAddTargetCleanAll)
-include(msbuildGenerateCMakeScript)
+include(mchbuildAddTargetCleanAll)
+include(mchbuildGenerateCMakeScript)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 
-set(MSBUILD_DOCUMENTATION ON CACHE BOOL "Build documentation" FORCE)
+set(MCHBUILD_DOCUMENTATION ON CACHE BOOL "Build documentation" FORCE)
 
-if(MSBUILD_DOCUMENTATION)
+if(MCHBUILD_DOCUMENTATION)
 
   find_package(Sphinx REQUIRED)
   add_subdirectory(docs)
@@ -52,12 +52,12 @@ if(MSBUILD_DOCUMENTATION)
 endif()
 
 # Add custom targets
-msbuild_add_target_clean_all(
+mchbuild_add_target_clean_all(
   ${CMAKE_SOURCE_DIR}/docs/cmake-modules
-  ${CMAKE_BINARY_DIR}/msbuild-cmake
+  ${CMAKE_BINARY_DIR}/mchbuild-cmake
   ${CMAKE_BINARY_DIR}/sphinx
   ${CMAKE_BINARY_DIR}/docs
 )
 
-msbuild_generate_cmake_script(${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR})
+mchbuild_generate_cmake_script(${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR})
 

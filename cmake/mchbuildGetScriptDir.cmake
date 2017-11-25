@@ -18,20 +18,20 @@
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-include(msbuildIncludeGuard)
-msbuild_include_guard()
+include(mchbuildIncludeGuard)
+mchbuild_include_guard()
 
-get_filename_component(__msbuild_cmake_script_dir__ ${CMAKE_CURRENT_LIST_FILE} PATH)
+get_filename_component(__mchbuild_cmake_script_dir__ ${CMAKE_CURRENT_LIST_FILE} PATH)
 
 #.rst:
-# msbuild_get_script_dir
+# mchbuild_get_script_dir
 # ------------------------
 #
-# Get the directory of the scripts located ``<msbuild-root>/cmake/scripts``.
+# Get the directory of the scripts located ``<mchbuild-root>/cmake/scripts``.
 #
 # .. code-block:: cmake
 #
-#   msbuild_get_script_dir(SCRIPT_DIR_VAR)
+#   mchbuild_get_script_dir(SCRIPT_DIR_VAR)
 # 
 # * Output arguments:
 #
@@ -40,6 +40,6 @@ get_filename_component(__msbuild_cmake_script_dir__ ${CMAKE_CURRENT_LIST_FILE} P
 #
 # .. note:: This function is for internal use only.
 #
-function(msbuild_get_script_dir SCRIPT_DIR_VAR)
-  set(${SCRIPT_DIR_VAR} "${__msbuild_cmake_script_dir__}/scripts" PARENT_SCOPE)
+function(mchbuild_get_script_dir SCRIPT_DIR_VAR)
+  set(${SCRIPT_DIR_VAR} "${__mchbuild_cmake_script_dir__}/scripts" PARENT_SCOPE)
 endfunction()

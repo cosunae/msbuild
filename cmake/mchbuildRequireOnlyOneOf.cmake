@@ -18,7 +18,7 @@
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-function(msbuild_require_only_one_of2)
+function(mchbuild_require_only_one_of2)
   set(options)
   set(one_value_args NAME1 NAME2)
   set(multi_value_args GROUP1 GROUP2)
@@ -33,7 +33,7 @@ function(msbuild_require_only_one_of2)
 
 endfunction()
 
-function(msbuild_require_only_one_of3)
+function(mchbuild_require_only_one_of3)
   set(options)
   set(one_value_args NAME1 NAME2 NAME3)
   set(multi_value_args GROUP1 GROUP2 GROUP3)

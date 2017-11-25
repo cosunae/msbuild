@@ -18,17 +18,17 @@
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-include(msbuildGetCacheVariables)
+include(mchbuildGetCacheVariables)
 
 #.rst:
-# msbuild_generate_cmake_script
+# mchbuild_generate_cmake_script
 # --------------------------------
 #
 # Create bash script for re-invoking CMake in the build directory. 
 #
 # .. code-block:: cmake
 #
-#   msbuild_generate_cmake_script(CMAKE_LISTS_DIR BUILD_DIR)
+#   mchbuild_generate_cmake_script(CMAKE_LISTS_DIR BUILD_DIR)
 #
 # * Input arguments
 #
@@ -37,10 +37,10 @@ include(msbuildGetCacheVariables)
 #   ``BUILD_DIR:PATH``
 #    - Directory to install the script
 #
-macro(msbuild_generate_cmake_script CMAKE_LISTS_DIR BUILD_DIR)
+macro(mchbuild_generate_cmake_script CMAKE_LISTS_DIR BUILD_DIR)
   set(script_args)
   set(_CMAKE_ARGS_)
-  msbuild_get_cache_variables(_CMAKE_ARGS_)
+  mchbuild_get_cache_variables(_CMAKE_ARGS_)
   foreach(arg ${_CMAKE_ARGS_})
     string(REGEX MATCH "^(.*)=+(.*)$" dummy ${arg})
     if(NOT(CMAKE_MATCH_1) AND NOT(CMAKE_MATCH_2))

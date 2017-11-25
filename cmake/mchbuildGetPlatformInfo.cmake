@@ -18,46 +18,46 @@
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-include(msbuildIncludeGuard)
-msbuild_include_guard()
+include(mchbuildIncludeGuard)
+mchbuild_include_guard()
 
 #.rst:
-# msbuild_get_platform_info
+# mchbuild_get_platform_info
 # -------------------------------------
 #
 # Get the identification string of the platform.
 #
 # .. code-block:: cmake
 #
-#   msbuild_get_platform_info()
+#   mchbuild_get_platform_info()
 #
 # The functions defines the following variable:
 #
-# ``MSBUILD_PLATFORM_STRING``
+# ``MCHBUILD_PLATFORM_STRING``
 #   String of the platform.
 #
 # and conditionally the following:
 #
-# ``MSBUILD_ON_WIN32``
+# ``MCHBUILD_ON_WIN32``
 #   Set to 1 if the platform is Win32-ish
-# ``MSBUILD_ON_UNIX``
+# ``MCHBUILD_ON_UNIX``
 #   Set to 1 if the platform is Unix-ish
-# ``MSBUILD_ON_APPLE``
+# ``MCHBUILD_ON_APPLE``
 #   Set to 1 if the platform is Darwin
-# ``MSBUILD_ON_LINUX``
+# ``MCHBUILD_ON_LINUX``
 #   Set to 1 if the platform is Linux
 #
-macro(msbuild_get_platform_info)
+macro(mchbuild_get_platform_info)
   if(WIN32)
-    set(MSBUILD_ON_WIN32 1 CACHE INTERNAL "Platform is Win32-ish" FORCE)
-    set(MSBUILD_PLATFORM_STRING "Windows" CACHE INTERNAL "Platform-id string" FORCE)
+    set(MCHBUILD_ON_WIN32 1 CACHE INTERNAL "Platform is Win32-ish" FORCE)
+    set(MCHBUILD_PLATFORM_STRING "Windows" CACHE INTERNAL "Platform-id string" FORCE)
   elseif(APPLE)
-    set(MSBUILD_ON_UNIX 1 CACHE INTERNAL "Platform is Unix-ish" FORCE)
-    set(MSBUILD_ON_APPLE 1 CACHE INTERNAL "Platform is Darwin" FORCE)
-    set(MSBUILD_PLATFORM_STRING "Darwin" CACHE INTERNAL "Platform-id string" FORCE)
+    set(MCHBUILD_ON_UNIX 1 CACHE INTERNAL "Platform is Unix-ish" FORCE)
+    set(MCHBUILD_ON_APPLE 1 CACHE INTERNAL "Platform is Darwin" FORCE)
+    set(MCHBUILD_PLATFORM_STRING "Darwin" CACHE INTERNAL "Platform-id string" FORCE)
   elseif(UNIX)
-    set(MSBUILD_ON_UNIX 1 CACHE INTERNAL "Platform is Unix-ish" FORCE)
-    set(MSBUILD_ON_LINUX 1 CACHE INTERNAL "Platform is Linux" FORCE)
-    set(MSBUILD_PLATFORM_STRING "Linux" CACHE INTERNAL "Platform-id string" FORCE)
+    set(MCHBUILD_ON_UNIX 1 CACHE INTERNAL "Platform is Unix-ish" FORCE)
+    set(MCHBUILD_ON_LINUX 1 CACHE INTERNAL "Platform is Linux" FORCE)
+    set(MCHBUILD_PLATFORM_STRING "Linux" CACHE INTERNAL "Platform-id string" FORCE)
   endif()
 endmacro()

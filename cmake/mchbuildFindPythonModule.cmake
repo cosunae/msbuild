@@ -18,18 +18,18 @@
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-include(msbuildIncludeGuard)
-msbuild_include_guard()
+include(mchbuildIncludeGuard)
+mchbuild_include_guard()
 
 #.rst:
-# msbuild_find_python_module
+# mchbuild_find_python_module
 # --------------------------------------
 #
 # Try to find a specific python module.
 #
 # .. code-block:: cmake
 #
-#   msbuild_find_python_module(MODULE [REQUIRED])
+#   mchbuild_find_python_module(MODULE [REQUIRED])
 #
 # ``MODULE``
 #   Python module to find.
@@ -48,7 +48,7 @@ msbuild_include_guard()
 # ``PYTHON_<module>_PATH``    
 #   Path to the module where ``<module>`` is the python module to search for in all uppercase.
 #
-function(msbuild_find_python_module MODULE)
+function(mchbuild_find_python_module MODULE)
   string(TOUPPER ${MODULE} module_upper)
 
   if(NOT PYTHON_${module_upper}_FOUND)
@@ -93,4 +93,4 @@ function(msbuild_find_python_module MODULE)
         endif()
     endif()
   endif(NOT PYTHON_${module_upper}_FOUND)
-endfunction(msbuild_find_python_module)
+endfunction(mchbuild_find_python_module)
