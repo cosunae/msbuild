@@ -105,23 +105,24 @@ macro(msbuild_find_package)
     # we check that all required vars are properly set and forwarded here
     msbuild_check_vars_are_defined(ARG_REQUIRED_VARS)
   else()
+    set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} ${dawn_DIR})
     # Check if the system has the package
     find_package(${ARG_PACKAGE} ${ARG_PACKAGE_ARGS} QUIET)
-
     # Check if all the required variables are set
     set(required_vars_ok TRUE)
     set(missing_required_vars)
     foreach(arg ${ARG_REQUIRED_VARS})
-      if(NOT(${arg}))
+      if(NOT(DEFINED ${arg}) OR ("${${arg}}" MATCHES "NOTFOUND"))
         set(required_vars_ok FALSE)
-        set(missing_required_vars "${missing_required_vars} ${arg}")
-      else()
-#TODO REMOVE this, no need for REQUIRED_VARS
-        set(arg ${arg} PARENT_SCOPE)
+        set(missing_required_vars "${missing_required_vars} ${arg} ${${arg}}")
       endif()
     endforeach()
 
-    if(missing_required_vars)
+    if(NOT(${${ARG_PACKAGE}_FOUND}))
+      set(required_vars_ok FALSE)
+      set(missing_required_vars "${missing_required_vars}" "${ARG_PACKAGE}_FOUND")
+    endif()
+    if(NOT(required_vars_ok))
       message(STATUS "Package ${ARG_PACKAGE} not found due to missing:${missing_required_vars}")    
     endif()
     
